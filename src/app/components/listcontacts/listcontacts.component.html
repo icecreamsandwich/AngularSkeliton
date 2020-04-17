@@ -1,0 +1,46 @@
+<div class="list row">
+  <div class="col-md-8">
+    <div class="input-group mb-3">
+      <div class="input-group-append">
+        <input type="text" class="form-control" placeholder="Search by User" [(ngModel)]="username" />
+        <button class="btn btn-outline-secondary" type="button" (click)="searchContact()">
+          Search
+        </button>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="contacts?.length > 0" class="col-md-6">
+    <table id="customers">
+      <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>Address</th>
+        <th>Phone</th>
+      </tr>
+
+      <tr *ngFor="let contact of contacts; let i = index">
+        <td>
+          {{contact.firstname}}
+        </td>
+        <td>
+          {{contact.lastname}}
+        </td>
+        <td>
+          {{contact.email}}
+        </td>
+        <td>
+          {{contact.address}}
+        </td>
+        <td>
+          {{contact.email}}
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div class="col-md-6">
+    <!-- <a class="badge badge-warning" href="/contacts/{{ contacts.id }}">
+          Edit
+        </a> -->
+  </div>
+</div>
