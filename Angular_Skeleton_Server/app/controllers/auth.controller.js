@@ -13,16 +13,6 @@ exports.signup = (req, res) => {
   User.create({
     username: req.body.username,
     email: req.body.email,
-    token: req.body.token,
-    firstname: req.body.firstname,
-    lastname: req.body.lastname,
-    class: req.body.class,
-    fb_id: req.body.fb_id,
-    twitter_id: req.body.twitter_id,
-    insta_id: req.body.insta_id,
-    google_id: req.body.google_id,
-    login_status: req.body.login_status,
-    stars: 0,
     password: bcrypt.hashSync(req.body.password, 8)
   })
     .then(user => {

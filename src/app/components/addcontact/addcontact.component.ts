@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ContactServiceService } from "../../_services/contact-service.service";
+import { ContactServiceService } from '../../_services/contact-service.service';
 
 @Component({
   selector: 'app-addcontact',
@@ -13,12 +13,12 @@ export class AddcontactComponent implements OnInit {
     email: '',
     address: '',
     phone: ''
-  }
-  submitted = false
+  };
+  submitted = false;
   constructor(private contactService: ContactServiceService) { }
 
   ngOnInit(): void {
-  
+
   }
 
   saveContact() {
@@ -28,18 +28,18 @@ export class AddcontactComponent implements OnInit {
       email: this.contact.email,
       address: this.contact.address,
       phone: this.contact.phone
-    }
-    console.log(data)
+    };
+    console.log(data);
     this.contactService.create(data).subscribe(
       response => {
         console.log(response);
-        console.log("contact added successfully");
+        console.log('contact added successfully');
         this.submitted = true;
       },
       error => {
-        console.log(error)
+        console.log(error);
       }
-    )
+    );
   }
 
   newContact() {
@@ -49,8 +49,8 @@ export class AddcontactComponent implements OnInit {
       email: '',
       address: '',
       phone: ''
-    }
-    this.submitted = false
+    };
+    this.submitted = false;
   }
 
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ContactServiceService } from "../../_services/contact-service.service";
+import { ContactServiceService } from '../../_services/contact-service.service';
 
 @Component({
   selector: 'app-listcontacts',
@@ -8,25 +8,25 @@ import { ContactServiceService } from "../../_services/contact-service.service";
 })
 export class ListcontactsComponent implements OnInit {
 
-  contacts : any;
-  username : ''
-  //dependancy Injection
-  constructor(private contactService : ContactServiceService) { }
+  contacts: any;
+  username: '';
+  // dependancy Injection
+  constructor(private contactService: ContactServiceService) { }
 
   ngOnInit(): void {
-    this.getAllContacts()
+    this.getAllContacts();
   }
 
   getAllContacts(){
     this.contactService.getAll().subscribe(
-      response =>{
+      response => {
         console.log(response);
-        this.contacts = JSON.parse(JSON.stringify(response)).data
+        this.contacts = JSON.parse(JSON.stringify(response)).data;
       },
-      error =>{
-        console.log(error)
+      error => {
+        console.log(error);
       }
-    )
+    );
   }
 
   editContact(){
@@ -36,22 +36,22 @@ export class ListcontactsComponent implements OnInit {
   searchContact(){
     const data = {
       username : this.username
-    }
-    let list :   String [] = []
+    };
+    const list: string [] = [];
     this.contactService.findByName(data).subscribe(
       response => {
-        var responseData = JSON.parse(JSON.stringify(response)).data
-        list.push(responseData)
-        console.log(list)
-        if(responseData){
-          this.contacts = list
+        const responseData = JSON.parse(JSON.stringify(response)).data;
+        list.push(responseData);
+        console.log(list);
+        if (responseData){
+          this.contacts = list;
         }else{
-          this.contacts = ""
+          this.contacts = '';
         }
       },
-      error =>{
+      error => {
         console.log(error);
       }
-    )
+    );
   }
 }

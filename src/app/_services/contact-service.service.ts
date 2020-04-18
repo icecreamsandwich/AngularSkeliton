@@ -11,7 +11,7 @@ export class ContactServiceService {
   constructor(private http: HttpClient) { }
 
   getAll() {
-    return this.http.post(baseUrl+'/getAllContacts', '');
+    return this.http.post(baseUrl + '/getAllContacts', '');
   }
 
   get(id) {
@@ -19,7 +19,7 @@ export class ContactServiceService {
   }
 
   create(data) {
-    return this.http.post(baseUrl+'/addContact', data);
+    return this.http.post(baseUrl + '/addContact', data);
   }
 
   update(id, data) {
