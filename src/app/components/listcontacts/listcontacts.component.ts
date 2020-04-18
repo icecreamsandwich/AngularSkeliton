@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ContactServiceService } from "../../_services/contact-service.service";
-import { element } from 'protractor';
 
 @Component({
   selector: 'app-listcontacts',
@@ -41,12 +40,13 @@ export class ListcontactsComponent implements OnInit {
     let list :   String [] = []
     this.contactService.findByName(data).subscribe(
       response => {
-        list.push(JSON.parse(JSON.stringify(response)).data)
+        var responseData = JSON.parse(JSON.stringify(response)).data
+        list.push(responseData)
         console.log(list)
-        if(list.length > 0){
+        if(responseData){
           this.contacts = list
         }else{
-          this.contacts = list
+          this.contacts = ""
         }
       },
       error =>{

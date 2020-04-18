@@ -9,6 +9,9 @@ import { AddcontactComponent } from './components/addcontact/addcontact.componen
 import { ListcontactsComponent } from './components/listcontacts/listcontacts.component';
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
+import { AddressformatterPipe } from './_pipes/addressformatter.pipe';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -16,13 +19,15 @@ import { HomeComponent } from './components/home/home.component';
     AddcontactComponent,
     ListcontactsComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    AddressformatterPipe
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
   ],
   providers: [],
   bootstrap: [AppComponent]

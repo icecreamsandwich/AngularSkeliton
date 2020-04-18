@@ -22,7 +22,6 @@ export class AddcontactComponent implements OnInit {
   }
 
   saveContact() {
-    console.log("in function")
     const data = {
       firstname: this.contact.firstname,
       lastname: this.contact.lastname,
