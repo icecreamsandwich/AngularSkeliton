@@ -4,8 +4,9 @@ const db = require("../models");
 const User = db.user;
 
 verifyToken = (req, res, next) => {
-  let token = req.headers["x-api-key"];
-
+  //let token = req.headers["x-api-key"];
+  let token = req.headers["Authorization"];
+  console.log(token)
   if (!token) {
     return res.status(403).send({
       message: "No token provided!"

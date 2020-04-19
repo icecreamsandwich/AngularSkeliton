@@ -4,6 +4,7 @@ import { HomeComponent } from './components/home/home.component';
 import { AddcontactComponent } from './components/addcontact/addcontact.component';
 import { ListcontactsComponent } from './components/listcontacts/listcontacts.component';
 import { LoginComponent } from './components/login/login.component';
+import { AuthGuard } from './_guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -13,14 +14,17 @@ const routes: Routes = [
   {
     path: 'home',
     component: HomeComponent,
+    canActivate : [AuthGuard]
   },
   {
     path: 'addContact',
-    component: AddcontactComponent
+    component: AddcontactComponent,
+    canActivate : [AuthGuard]
   },
   {
     path: 'listContact',
-    component: ListcontactsComponent
+    component: ListcontactsComponent,
+    canActivate : [AuthGuard]
   }
 ];
 

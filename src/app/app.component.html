@@ -1,17 +1,26 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 </head>
+
 <body>
   <!-- *ngIf="authenticated" -->
-<ul>
-  <li><a class="active" href="/home">Home</a></li>
-  <li><a href="/addContact">Add User</a></li>
-  <li><a href="/listContact">List Users</a></li>
-  <li class="right"><a href="/login">Logout</a></li> 
-</ul>
-
+  <ul *ngIf="isAuthenticated">
+    <li><a class="active" href="/home">Home</a></li>
+    <li><a href="/addContact">Add User</a></li>
+    <li><a href="/listContact">List Users</a></li>
+    <li class="dropdown right" *ngIf="isAuthenticated">
+      <a href="javascript:void(0)" class="dropbtn">{{userDetails.userName}}</a>
+      <div class="dropdown-content">
+        <a href="javascript:void(0)">Profile</a>
+        <a href="javascript:void(0)">Reset Password</a>
+        <a href="#" (click)="logout($event)">Logout</a>
+      </div>
+    </li>
+  </ul>
 </body>
+
 </html>
 
 <router-outlet></router-outlet>
