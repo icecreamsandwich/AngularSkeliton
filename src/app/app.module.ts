@@ -12,6 +12,7 @@ import { HomeComponent } from './components/home/home.component';
 import { AddressformatterPipe } from './_pipes/addressformatter.pipe';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { ChangefontfamilyDirective } from './_directives/changefontfamily.directive';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { environment } from '../environments/environment';
     ListcontactsComponent,
     LoginComponent,
     HomeComponent,
-    AddressformatterPipe
+    AddressformatterPipe,
+    ChangefontfamilyDirective
   ],
   imports: [
     BrowserModule,
