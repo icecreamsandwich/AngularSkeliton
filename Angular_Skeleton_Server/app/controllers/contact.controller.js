@@ -37,10 +37,7 @@ exports.getAllContacts = (req, res) => {
 
 
 exports.findContact = (req, res) => {
-    if(!req.body.username){
-        req.body.username = ""
-    }
-    Contact.findOne({
+    Contact.findAll({
         where: {
             [Op.or]: {
                 firstname: {

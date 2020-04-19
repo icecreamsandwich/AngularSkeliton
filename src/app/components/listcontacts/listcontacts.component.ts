@@ -37,17 +37,13 @@ export class ListcontactsComponent implements OnInit {
     const data = {
       username : this.username
     };
-    const list: string [] = [];
     this.contactService.findByName(data).subscribe(
       response => {
         const responseData = JSON.parse(JSON.stringify(response)).data;
-        list.push(responseData);
-        console.log(list);
-        if (responseData){
-          this.contacts = list;
-        }else{
-          this.contacts = '';
-        }
+        console.log(responseData);
+        if(responseData[0] == undefined){
+          this.contacts = ""
+        }else this.contacts = responseData;
       },
       error => {
         console.log(error);
