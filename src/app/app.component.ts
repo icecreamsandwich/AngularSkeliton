@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from './_services/auth.service';
 import { Router } from '@angular/router';
 
@@ -7,27 +7,32 @@ import { Router } from '@angular/router';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'angular-skeleton';
   userDetails = {
-    userName : '',
-    userToken : ''
+    userName: '',
+    userToken: ''
   }
   isAuthenticated = false;
-  constructor (private authService : AuthService, private router : Router){
+  constructor(public authService: AuthService, private router: Router) {
+
+  }
+
+  ngOnInit(): void {
     this.getUserDetails()
   }
 
-  getUserDetails(){
+  getUserDetails() {
     this.userDetails.userName = this.authService.getUserName()
     this.userDetails.userToken = this.authService.getToken()
-    if(this.userDetails.userToken && this.userDetails.userName){
+    if (this.userDetails.userToken && this.userDetails.userName) {
       this.isAuthenticated = true;
     }
   }
-  logout(e){
+  logout(e) {
     e.preventDefault()
-    if(this.authService.signOut()){
+    if (this.authService.signOut()) {
+      this.isAuthenticated = false;
       this.router.navigate(['/login'])
     }
   }

@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,6 +13,7 @@ import { AddressformatterPipe } from './_pipes/addressformatter.pipe';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { ChangefontfamilyDirective } from './_directives/changefontfamily.directive';
+import { AuthInterceptor } from './_helpers/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,11 @@ import { ChangefontfamilyDirective } from './_directives/changefontfamily.direct
     HttpClientModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
   ],
-  providers: [],
+  providers: [{
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 const baseUrl = 'http://localhost:4205/api';
 
 @Injectable({
@@ -10,7 +10,9 @@ export class AuthService {
   constructor(private http: HttpClient) { }
 
   signIn(data) {
-    return this.http.post(baseUrl + '/auth/signin', data);
+    //skip headers adding interceptor for the sigin request
+    const headers = new HttpHeaders().set("SkipHeader", "yes");
+    return this.http.post(baseUrl + '/auth/signin', {headers}, data);
   }
 
   public getToken(): string {
@@ -27,6 +29,7 @@ export class AuthService {
     // return a boolean reflecting 
     // whether or not the token is expired
     if (token) return true;
+    else return false;
   }
 
   public signOut(): boolean {

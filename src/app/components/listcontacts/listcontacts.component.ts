@@ -33,6 +33,10 @@ export class ListcontactsComponent implements OnInit {
 
   }
 
+  deleteContact(){
+    
+  }
+
   searchContact(){
     const data = {
       username : this.username

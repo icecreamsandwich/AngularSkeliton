@@ -14,18 +14,19 @@ const routes: Routes = [
   {
     path: 'home',
     component: HomeComponent,
-    canActivate : [AuthGuard]
+    canActivate: [AuthGuard]
   },
   {
     path: 'addContact',
     component: AddcontactComponent,
-    canActivate : [AuthGuard]
+    canActivate: [AuthGuard]
   },
   {
     path: 'listContact',
     component: ListcontactsComponent,
-    canActivate : [AuthGuard]
-  }
+    canActivate: [AuthGuard]
+  },
+  { path: '', redirectTo: 'login', pathMatch: 'full' }
 ];
 
 @NgModule({

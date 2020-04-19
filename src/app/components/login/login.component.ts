@@ -11,7 +11,7 @@ export class LoginComponent implements OnInit {
     username : '',
     password : ''
   }
-  submitted = false;
+  
   constructor(private authService : AuthService, private router : Router) { }
 
   ngOnInit(): void {
@@ -30,12 +30,12 @@ export class LoginComponent implements OnInit {
           var userName = result.username
           localStorage.setItem("token", accessToken);
           localStorage.setItem("userName", userName);
-          this.submitted = true;
           console.log("logged in successfully")
           this.router.navigate(['/home']);
         },
         error =>{
-          alert("Sigin failed"+error)
+          console.log(error)
+          alert("Signin failed "+error)
           console.log(error)
         }
       )
