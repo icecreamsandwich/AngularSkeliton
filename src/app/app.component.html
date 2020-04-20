@@ -5,7 +5,7 @@
 </head>
 
 <body>
-  <ul *ngIf="isAuthenticated">
+  <ul *ngIf="isAuthenticatedObs | async">
     <li><a class="active" href="/home">Home</a></li>
     <li><a href="/addContact">Add User</a></li>
     <li><a href="/listContact">List Users</a></li>
@@ -19,7 +19,7 @@
     </li>
   </ul>
 
-  <div *ngIf="isAuthenticated" class="footer">
+  <div *ngIf="isAuthenticatedObs | async" class="footer">
     <span class="footnote">All rights reserved Muneeb Mukhtar @2020</span>
     <!--Async oberervable pipe to show the time asyncronoulsy-->
     <app-asyncobervabletime></app-asyncobervabletime>
