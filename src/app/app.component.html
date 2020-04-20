@@ -18,6 +18,12 @@
       </div>
     </li>
   </ul>
+
+  <div *ngIf="isAuthenticated" class="footer">
+    <span class="footnote">All rights reserved Muneeb Mukhtar @2020</span>
+    <!--Async oberervable pipe to show the time asyncronoulsy-->
+    <app-asyncobervabletime></app-asyncobervabletime>
+  </div>
 </body>
 
 </html>

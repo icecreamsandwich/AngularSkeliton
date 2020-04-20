@@ -16,6 +16,7 @@ import { ChangefontfamilyDirective } from './_directives/changefontfamily.direct
 import { AuthInterceptor } from './_helpers/auth.interceptor';
 import { LoaderComponent } from './components/loader/loader.component';
 import { LoaderInterceptor } from './_helpers/loader.interceptor';
+import { AsyncobervabletimeComponent } from './components/asyncobervabletime/asyncobervabletime.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { LoaderInterceptor } from './_helpers/loader.interceptor';
     HomeComponent,
     AddressformatterPipe,
     ChangefontfamilyDirective,
-    LoaderComponent
+    LoaderComponent,
+    AsyncobervabletimeComponent
   ],
   imports: [
     BrowserModule,
