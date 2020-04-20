@@ -15,11 +15,7 @@ export class AuthInterceptor implements HttpInterceptor {
   constructor(private authService: AuthService) { }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    //Get Any headers passed before making http requests
-    console.log(request.headers)
-    if (request.headers.has("SkipHeader")) {
-      return next.handle(request)
-    } else {
+    if(this.authService.getToken()){
       const headers = new HttpHeaders({
         'Authorization': this.authService.getToken(),
         'WEB-API-key': 'secret-key',
@@ -27,6 +23,9 @@ export class AuthInterceptor implements HttpInterceptor {
       });
       const cloneReq = request.clone({ headers });
       return next.handle(cloneReq);
+    }
+    else {
+      return next.handle(request);  
     }
   }
 }

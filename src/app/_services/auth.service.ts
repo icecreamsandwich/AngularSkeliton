@@ -12,7 +12,7 @@ export class AuthService {
   signIn(data) {
     //skip headers adding interceptor for the sigin request
     const headers = new HttpHeaders().set("SkipHeader", "yes");
-    return this.http.post(baseUrl + '/auth/signin', {headers}, data);
+    return this.http.post(baseUrl + '/auth/signin', data, {headers});
   }
 
   public getToken(): string {
