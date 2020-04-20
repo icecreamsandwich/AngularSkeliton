@@ -14,6 +14,8 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { ChangefontfamilyDirective } from './_directives/changefontfamily.directive';
 import { AuthInterceptor } from './_helpers/auth.interceptor';
+import { LoaderComponent } from './components/loader/loader.component';
+import { LoaderInterceptor } from './_helpers/loader.interceptor';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,8 @@ import { AuthInterceptor } from './_helpers/auth.interceptor';
     LoginComponent,
     HomeComponent,
     AddressformatterPipe,
-    ChangefontfamilyDirective
+    ChangefontfamilyDirective,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,
@@ -33,9 +36,13 @@ import { AuthInterceptor } from './_helpers/auth.interceptor';
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
   ],
   providers: [{
-      provide: HTTP_INTERCEPTORS,
-      useClass: AuthInterceptor,
-      multi: true
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptor,
+    multi: true
+  },{
+    provide: HTTP_INTERCEPTORS,
+    useClass: LoaderInterceptor,
+    multi: true
   }],
   bootstrap: [AppComponent]
 })
