@@ -6,6 +6,11 @@ const Op = db.Sequelize.Op;
 var jwt = require("jsonwebtoken");
 var bcrypt = require("bcryptjs");
 
+/**
+ * Adds a contact
+ * @param req contains firstname, lastname, email, address and phone
+ */
+
 exports.addContact = (req, res) => {
     // Save Contact to Database
     Contact.create({
@@ -26,6 +31,11 @@ exports.addContact = (req, res) => {
         });
 };
 
+/**
+ * Gets all contacts from table
+ * 
+ */
+
 exports.getAllContacts = (req, res) => {
     Contact.findAll({}).then(contacts => {
         res.status(200).send({
@@ -35,7 +45,10 @@ exports.getAllContacts = (req, res) => {
     })
 }
 
-
+/**
+ * Find a contact
+ * @param req contains username
+ */
 exports.findContact = (req, res) => {
     Contact.findAll({
         where: {
@@ -52,6 +65,25 @@ exports.findContact = (req, res) => {
         res.status(200).send({
             message: "Contacts retrieved successfully",
             "data": contact
+        })
+    })
+}
+
+/**
+ * Deletes a contact
+ * @param req contains userID
+ */
+exports.deleteContact = (req, res) => {
+    Contact.destroy({
+        where : {
+            id : req.body.userId
+        }
+    }).then( contact => {
+        console.log(contact)
+        console.log("contact deleted successfully")
+        res.status(200).send({
+            status : 200,
+            message: "Contact deleted successfully",
         })
     })
 }

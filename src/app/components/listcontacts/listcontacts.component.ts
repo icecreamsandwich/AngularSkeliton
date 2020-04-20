@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ContactServiceService } from '../../_services/contact-service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-listcontacts',
@@ -11,13 +12,13 @@ export class ListcontactsComponent implements OnInit {
   contacts: any;
   username: '';
   // dependancy Injection
-  constructor(private contactService: ContactServiceService) { }
+  constructor(private contactService: ContactServiceService, private router: Router) { }
 
   ngOnInit(): void {
     this.getAllContacts();
   }
 
-  getAllContacts(){
+  getAllContacts() {
     this.contactService.getAll().subscribe(
       response => {
         console.log(response);
@@ -29,25 +30,45 @@ export class ListcontactsComponent implements OnInit {
     );
   }
 
-  editContact(){
+  editContact() {
 
   }
 
-  deleteContact(){
-    
+  deleteContact(e, id) {
+    var deleteConfirm = confirm("Are you sure to delete this user?")
+    if (deleteConfirm && id) {
+      const data = {
+        "userId": id
+      }
+      this.contactService.delete(data).subscribe(
+        response => {
+          console.log(response)
+          var responseData = JSON.parse(JSON.stringify(response))
+          if (responseData.message == "Unauthorized!" || responseData.message == "No token provided!") {
+            alert("You are unauthorized to perform this operation")
+          } else {
+            alert(responseData.message)
+            this.router.navigate(['/listContact'])
+          }
+        },
+        error => {
+          console.log(error)
+        }
+      )
+    }
   }
 
-  searchContact(){
+  searchContact() {
     const data = {
-      username : this.username
+      username: this.username
     };
     this.contactService.findByName(data).subscribe(
       response => {
         const responseData = JSON.parse(JSON.stringify(response)).data;
         console.log(responseData);
-        if(responseData[0] == undefined){
+        if (responseData[0] == undefined) {
           this.contacts = ""
-        }else this.contacts = responseData;
+        } else this.contacts = responseData;
       },
       error => {
         console.log(error);

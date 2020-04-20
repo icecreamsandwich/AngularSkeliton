@@ -13,4 +13,5 @@ module.exports = function(app) {
   app.post("/api/addContact",controller.addContact);
   app.post("/api/getAllContacts",[authJwt.verifyToken], controller.getAllContacts);
   app.post("/api/findContact",[authJwt.verifyToken], controller.findContact);
+  app.post("/api/deleteContact",[authJwt.verifyToken], controller.deleteContact);
 };

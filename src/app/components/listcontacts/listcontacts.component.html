@@ -17,6 +17,7 @@
           <th>Email</th>
           <th>Address</th>
           <th>Phone</th>
+          <th>Delete</th>
         </tr>
   
         <tr *ngFor="let contact of contacts; let i = index">
@@ -35,6 +36,9 @@
           <td>
             {{contact.phone}}
           </td>
+          <td>
+            <span class="deleteSpan" (click)= "deleteContact($event, contact.id)">X</span>
+          </td>
         </tr>
       </table>
   </div>
@@ -42,8 +46,5 @@
     <span>No users found</span>
   </ng-template>
   <div class="col-md-6">
-    <!-- <a class="badge badge-warning" href="/contacts/{{ contacts.id }}">
-          Edit
-        </a> -->
   </div>
 </div>

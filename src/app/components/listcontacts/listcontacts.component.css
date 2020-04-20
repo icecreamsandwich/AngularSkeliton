@@ -37,3 +37,8 @@ input[type=text]{
     padding:  10px 10px;
     margin : 0 0 0 10px;
   }
+
+  .deleteSpan{
+    cursor: pointer;
+    font-weight: bold;
+  }

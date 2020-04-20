@@ -26,8 +26,8 @@ export class ContactServiceService {
     return this.http.put(`${baseUrl}/${id}`, data);
   }
 
-  delete(id) {
-    return this.http.delete(`${baseUrl}/${id}`);
+  delete(data) {
+    return this.http.post(baseUrl + '/deleteContact', data);
   }
 
   deleteAll() {
