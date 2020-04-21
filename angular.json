@@ -121,6 +121,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "angular-skeleton"
+    }
+  },
+  "defaultProject": "angular-skeleton",
+  "cli": {
+    "analytics": false
+  }
 }

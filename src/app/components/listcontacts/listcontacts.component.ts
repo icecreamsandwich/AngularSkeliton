@@ -35,26 +35,26 @@ export class ListcontactsComponent implements OnInit {
   }
 
   deleteContact(e, id) {
-    var deleteConfirm = confirm("Are you sure to delete this user?")
+    const deleteConfirm = confirm('Are you sure to delete this user?');
     if (deleteConfirm && id) {
       const data = {
-        "userId": id
-      }
+        userId: id
+      };
       this.contactService.delete(data).subscribe(
         response => {
-          console.log(response)
-          var responseData = JSON.parse(JSON.stringify(response))
-          if (responseData.message == "Unauthorized!" || responseData.message == "No token provided!") {
-            alert("You are unauthorized to perform this operation")
+          console.log(response);
+          const responseData = JSON.parse(JSON.stringify(response));
+          if (responseData.message == 'Unauthorized!' || responseData.message == 'No token provided!') {
+            alert('You are unauthorized to perform this operation');
           } else {
-            alert(responseData.message)
-            this.router.navigate(['/listContact'])
+            alert(responseData.message);
+            this.router.navigate(['/listContact']);
           }
         },
         error => {
-          console.log(error)
+          console.log(error);
         }
-      )
+      );
     }
   }
 
@@ -67,8 +67,8 @@ export class ListcontactsComponent implements OnInit {
         const responseData = JSON.parse(JSON.stringify(response)).data;
         console.log(responseData);
         if (responseData[0] == undefined) {
-          this.contacts = ""
-        } else this.contacts = responseData;
+          this.contacts = '';
+        } else { this.contacts = responseData; }
       },
       error => {
         console.log(error);

@@ -12,22 +12,22 @@ export class AppComponent implements OnInit {
   title = 'angular-skeleton';
   isAuthenticatedObs = new Observable<boolean>((observer: Observer<boolean>) => {
     setInterval(() => observer.next(this.authService.isAuthenticated())
-      , 1); //1 millisecond
+      , 1); // 1 millisecond
   });
 
 
-  public isAuthenticated$: BehaviorSubject<boolean>
+  public isAuthenticated$: BehaviorSubject<boolean>;
   userDetails = {
     userName: '',
     userToken: ''
-  }
+  };
   constructor(public authService: AuthService, private router: Router) {
-    //this.isAuthenticated$ = new BehaviorSubject(false)
+    // this.isAuthenticated$ = new BehaviorSubject(false)
   }
 
   ngOnInit(): void {
-    this.isAuthenticated$ = new BehaviorSubject(false)
-    this.getUserDetails()
+    this.isAuthenticated$ = new BehaviorSubject(false);
+    this.getUserDetails();
   }
 
   ngOnDestroy(): void {
@@ -35,17 +35,17 @@ export class AppComponent implements OnInit {
   }
 
   getUserDetails() {
-    this.userDetails.userName = this.authService.getUserName()
-    this.userDetails.userToken = this.authService.getToken()
+    this.userDetails.userName = this.authService.getUserName();
+    this.userDetails.userToken = this.authService.getToken();
     if (this.userDetails.userToken && this.userDetails.userName) {
       this.isAuthenticated$.next(true);
     }
   }
   logout(e) {
-    e.preventDefault()
+    e.preventDefault();
     this.isAuthenticated$.next(false);
     if (this.authService.signOut()) {
-      this.router.navigate(['/login'])
+      this.router.navigate(['/login']);
     }
   }
 }

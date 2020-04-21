@@ -17,28 +17,28 @@ export class LoaderInterceptor implements HttpInterceptor {
   constructor(private loaderService: LoaderService) { }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    this.showLoader()
+    this.showLoader();
     return next.handle(request).pipe(tap(
       (event: HttpEvent<any>) => {
         if (event instanceof HttpResponse) {
-          this.onEnd()
+          this.onEnd();
         }
       },
       error => {
-        console.log(error)
-        this.onEnd()
+        console.log(error);
+        this.onEnd();
       }
     ));
   }
 
   onEnd(): void {
-    this.hideLoader()
+    this.hideLoader();
   }
   showLoader(): void {
-    this.loaderService.show()
+    this.loaderService.show();
   }
 
   hideLoader(): void {
-    this.loaderService.hide()
+    this.loaderService.hide();
   }
 }

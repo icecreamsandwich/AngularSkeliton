@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from "../../_services/auth.service";
+import { AuthService } from '../../_services/auth.service';
 import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
@@ -10,7 +10,7 @@ export class LoginComponent implements OnInit {
   login = {
     username: '',
     password: ''
-  }
+  };
 
   constructor(private authService: AuthService, private router: Router) { }
 
@@ -22,15 +22,15 @@ export class LoginComponent implements OnInit {
     const data = {
       username: this.login.username,
       password: this.login.password
-    }
+    };
     if (data) {
       this.authService.signIn(data).subscribe(
         res => {
-          var result = JSON.parse(JSON.stringify(res));
+          const result = JSON.parse(JSON.stringify(res));
           if (result) {
-            localStorage.setItem("token", result.accessToken);
-            localStorage.setItem("userName", result.username);
-            console.log("logged in successfully")
+            localStorage.setItem('token', result.accessToken);
+            localStorage.setItem('userName', result.username);
+            console.log('logged in successfully');
             this.router.navigate(['/home']);
           } else {
             this.router.navigate(['/']);
@@ -38,10 +38,10 @@ export class LoginComponent implements OnInit {
 
         },
         error => {
-          console.log(error)
-          alert("Signin failed " + JSON.stringify(error))
+          console.log(error);
+          alert('Signin failed ' + JSON.stringify(error));
         }
-      )
+      );
     }
   }
 }

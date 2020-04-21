@@ -17,6 +17,7 @@ import { AuthInterceptor } from './_helpers/auth.interceptor';
 import { LoaderComponent } from './components/loader/loader.component';
 import { LoaderInterceptor } from './_helpers/loader.interceptor';
 import { AsyncobervabletimeComponent } from './components/asyncobervabletime/asyncobervabletime.component';
+import { HomechildComponent } from './components/homechild/homechild.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { AsyncobervabletimeComponent } from './components/asyncobervabletime/asy
     AddressformatterPipe,
     ChangefontfamilyDirective,
     LoaderComponent,
-    AsyncobervabletimeComponent
+    AsyncobervabletimeComponent,
+    HomechildComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +43,7 @@ import { AsyncobervabletimeComponent } from './components/asyncobervabletime/asy
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptor,
     multi: true
-  },{
+  }, {
     provide: HTTP_INTERCEPTORS,
     useClass: LoaderInterceptor,
     multi: true

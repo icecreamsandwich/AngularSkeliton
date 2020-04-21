@@ -10,8 +10,8 @@ export class AuthService {
   constructor(private http: HttpClient) { }
 
   signIn(data) {
-    //skip headers adding interceptor for the sigin request
-    const headers = new HttpHeaders().set("SkipHeader", "yes");
+    // skip headers adding interceptor for the sigin request
+    const headers = new HttpHeaders().set('SkipHeader', 'yes');
     return this.http.post(baseUrl + '/auth/signin', data, {headers});
   }
 
@@ -26,16 +26,16 @@ export class AuthService {
   public isAuthenticated(): boolean {
     // get the token
     const token = this.getToken();
-    // return a boolean reflecting 
+    // return a boolean reflecting
     // whether or not the token is expired
-    if (token) return true;
-    else return false;
+    if (token) { return true; }
+    else { return false; }
   }
 
   public signOut(): boolean {
-    localStorage.removeItem('token')
-    localStorage.removeItem('userName')
-    console.log("User logout successfully")
+    localStorage.removeItem('token');
+    localStorage.removeItem('userName');
+    console.log('User logout successfully');
     return true;
   }
 

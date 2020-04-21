@@ -2,7 +2,8 @@ import { ChangefontfamilyDirective } from './changefontfamily.directive';
 
 describe('ChangefontfamilyDirective', () => {
   it('should create an instance', () => {
-    const directive = new ChangefontfamilyDirective();
+    let element: any;
+    const directive = new ChangefontfamilyDirective(element);
     expect(directive).toBeTruthy();
   });
 });
