@@ -12,10 +12,10 @@ export class AppComponent implements OnInit {
   title = 'angular-skeleton';
   isAuthenticatedObs = new Observable<boolean>((observer: Observer<boolean>) => {
     setInterval(() => observer.next(this.authService.isAuthenticated())
-      , 1000);
+      , 1); //1 millisecond
   });
 
-  
+
   public isAuthenticated$: BehaviorSubject<boolean>
   userDetails = {
     userName: '',
