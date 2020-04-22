@@ -22,8 +22,7 @@ export class AddcontactComponent implements OnInit {
   }
 
   saveContact() {
-    alert("In add contact")
-    /* const data = {
+    const data = {
       firstname: this.contact.firstname,
       lastname: this.contact.lastname,
       email: this.contact.email,
@@ -40,7 +39,7 @@ export class AddcontactComponent implements OnInit {
       error => {
         console.log(error);
       }
-    ); */
+    );
   }
 
   newContact() {

@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NG_VALIDATORS } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -18,6 +18,7 @@ import { LoaderComponent } from './components/loader/loader.component';
 import { LoaderInterceptor } from './_helpers/loader.interceptor';
 import { AsyncobervabletimeComponent } from './components/asyncobervabletime/asyncobervabletime.component';
 import { HomechildComponent } from './components/homechild/homechild.component';
+import { PhonevalidatorDirective } from './_directives/phonevalidator.directive';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { HomechildComponent } from './components/homechild/homechild.component';
     ChangefontfamilyDirective,
     LoaderComponent,
     AsyncobervabletimeComponent,
-    HomechildComponent
+    HomechildComponent,
+    PhonevalidatorDirective
   ],
   imports: [
     BrowserModule,
@@ -46,6 +48,10 @@ import { HomechildComponent } from './components/homechild/homechild.component';
   }, {
     provide: HTTP_INTERCEPTORS,
     useClass: LoaderInterceptor,
+    multi: true
+  },{
+    provide: NG_VALIDATORS,
+    useClass: PhonevalidatorDirective,
     multi: true
   }],
   bootstrap: [AppComponent]
