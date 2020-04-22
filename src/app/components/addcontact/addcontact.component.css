@@ -9,7 +9,7 @@ input[type=text],input[type=email], select{
   }
   
   input[type=submit], button {
-    width: 100%;
+    width: 25%;
     background-color: #4CAF50;
     color: white;
     padding: 14px 20px;
@@ -18,9 +18,20 @@ input[type=text],input[type=email], select{
     border-radius: 4px;
     cursor: pointer;
   }
+  input[type=button], button {
+    width: 25%;
+    padding: 14px 20px;
+    margin-left: 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    float: left;
+    background-color: #83bf21;
+    color: #fff;
+  }
   
-  input[type=submit]:hover {
-    background-color: #45a049;
+  input[type=submit]:hover, button:hover {
+    background-color: #ccc;
   }
   
   div {
@@ -29,7 +40,19 @@ input[type=text],input[type=email], select{
     padding: 20px;
   }
 
-  /* .form-group{
-      display: inline-block;
-      clear: both;
-  } */
+.alert-danger {
+    color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1;
+}
+
+.alert {
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+
+button[disabled] {
+  background-color : grey;
+}
