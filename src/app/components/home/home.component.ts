@@ -1,4 +1,7 @@
-import { Component, OnInit, Output } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { BehaviorSubject, Observable, Observer } from 'rxjs';
+import { AuthService } from 'src/app/_services/auth.service';
+
 
 @Component({
   selector: 'app-home',
@@ -8,11 +11,42 @@ import { Component, OnInit, Output } from '@angular/core';
 export class HomeComponent implements OnInit {
   message = 'Hi child';
   GreetMessage = 'css and php[server] too';
+  subjectValue: any
+  fromChildData : string
+  toChildData : string
 
-  constructor() { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
+    this.getUserTokenDetails()
   }
 
+  getUserTokenDetails() {
+    /*   this.subjectValue = new Observable<string>((observer: Observer<string>) => {
+        let data = {
+          username: "admin",
+          password: "Admin3201$#$"
+        }
+        setInterval(() => {
+          //random string
+          // let randStr = Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 5);
+          this.authService.signIn(data).subscribe(res => {
+            const result = JSON.parse(JSON.stringify(res))
+            observer.next(result)
+          },
+            error => {
+              console.log(error)
+              observer.next(error)
+            })
+        }, 10000);
+      }) */
+  }
 
+  recieveDataFromChild(event){
+    this.fromChildData = event
+  }
+
+  sendDataToChild(){
+    this.toChildData = "Hello Child"
+  }
 }

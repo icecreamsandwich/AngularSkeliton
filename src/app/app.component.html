@@ -6,9 +6,9 @@
 
 <body>
   <ul *ngIf="isAuthenticatedObs | async">
-    <li><a class="active" href="/home">Home</a></li>
-    <li><a href="/addContact">Add User</a></li>
-    <li><a href="/listContact">List Users</a></li>
+    <li><a class="active" [routerLink]="['/home']">Home</a></li>
+    <li><a [routerLink]="['/addContact']">Add User</a></li>
+    <li><a [routerLink]="['/listContact']">List Users</a></li>
     <li class="dropdown right">
       <a href="javascript:void(0)" class="dropbtn">{{userDetails.userName}}</a>
       <div class="dropdown-content">
