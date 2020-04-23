@@ -4,7 +4,7 @@ import { ContactServiceService } from '../../_services/contact-service.service';
 @Component({
   selector: 'app-addcontact',
   templateUrl: './addcontact.component.html',
-  styleUrls: ['./addcontact.component.css']
+  styleUrls: ['./addcontact.component.css', '../../../assets/css/shared.css']
 })
 export class AddcontactComponent implements OnInit {
   contact = {

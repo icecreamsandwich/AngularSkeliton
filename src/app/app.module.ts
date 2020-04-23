@@ -19,6 +19,7 @@ import { LoaderInterceptor } from './_helpers/loader.interceptor';
 import { AsyncobervabletimeComponent } from './components/asyncobervabletime/asyncobervabletime.component';
 import { HomechildComponent } from './components/homechild/homechild.component';
 import { PhonevalidatorDirective } from './_directives/phonevalidator.directive';
+import { ResetpasswordComponent } from './components/resetpassword/resetpassword.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { PhonevalidatorDirective } from './_directives/phonevalidator.directive'
     LoaderComponent,
     AsyncobervabletimeComponent,
     HomechildComponent,
-    PhonevalidatorDirective
+    PhonevalidatorDirective,
+    ResetpasswordComponent
   ],
   imports: [
     BrowserModule,

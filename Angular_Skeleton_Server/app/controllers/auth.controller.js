@@ -86,3 +86,44 @@ exports.signin = (req, res) => {
       res.status(500).send({ message: err.message });
     });
 };
+
+
+exports.resetPassword = (req, res) => {
+  console.log("here")
+  User.findOne({
+    where: {
+      username: req.body.username
+    }
+  }).then(user => {
+    if (!user) {
+      return res.status(200).send({
+        status: "failure",
+        message: "User not found!"
+      })
+    }
+    var passwordIsValid = bcrypt.compareSync(
+      req.body.password,
+      user.password
+    );
+    if (!passwordIsValid) {
+      return res.status(200).send({
+        status: "failure",
+        message: "Password is not matching with your original password"
+      })
+    } else {
+      //update the user
+      user.update({
+        password: bcrypt.hashSync(req.body.newpassword, 8)
+      }).then(user => {
+        return res.status(200).send({
+          status: "success",
+          message: "Password Updated successfully",
+          data: user
+        })
+      })
+    }
+  }).catch(err => {
+    res.status(500).send({ message: err.message });
+  })
+};
+

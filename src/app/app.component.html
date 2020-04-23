@@ -13,7 +13,7 @@
       <a href="javascript:void(0)" class="dropbtn">{{userDetails.userName}}</a>
       <div class="dropdown-content">
         <a href="javascript:void(0)">Profile</a>
-        <a href="javascript:void(0)">Reset Password</a>
+        <a [routerLink]="['/resetPassword']">Reset Password</a>
         <a href="#" (click)="logout($event)">Logout</a>
       </div>
     </li>

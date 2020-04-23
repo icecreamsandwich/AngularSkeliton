@@ -5,6 +5,7 @@ import { AddcontactComponent } from './components/addcontact/addcontact.componen
 import { ListcontactsComponent } from './components/listcontacts/listcontacts.component';
 import { LoginComponent } from './components/login/login.component';
 import { AuthGuard } from './_guards/auth.guard';
+import { ResetpasswordComponent } from './components/resetpassword/resetpassword.component';
 
 const routes: Routes = [
   {
@@ -24,6 +25,11 @@ const routes: Routes = [
   {
     path: 'listContact',
     component: ListcontactsComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'resetPassword',
+    component: ResetpasswordComponent,
     canActivate: [AuthGuard]
   },
   { path: '', redirectTo: 'home', pathMatch: 'full' }

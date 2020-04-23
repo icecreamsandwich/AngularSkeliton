@@ -15,8 +15,6 @@ export class PhonevalidatorDirective implements Validator {
   }
 
   validate(control: AbstractControl): Promise<{ [key: string]: any }> | Observable<{ [key: string]: any }> {
-    console.log(control.value)
-    console.log(this.validateService.validatePhoneNumber(control.value))
     return this.validateService.validatePhoneNumber(control.value)
   }
 
