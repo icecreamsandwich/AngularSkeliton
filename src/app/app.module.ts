@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule, NG_VALIDATORS } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -48,10 +48,6 @@ import { PhonevalidatorDirective } from './_directives/phonevalidator.directive'
   }, {
     provide: HTTP_INTERCEPTORS,
     useClass: LoaderInterceptor,
-    multi: true
-  },{
-    provide: NG_VALIDATORS,
-    useClass: PhonevalidatorDirective,
     multi: true
   }],
   bootstrap: [AppComponent]

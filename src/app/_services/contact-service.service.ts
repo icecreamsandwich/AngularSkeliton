@@ -30,10 +30,6 @@ export class ContactServiceService {
     return this.http.post(baseUrl + '/deleteContact', data);
   }
 
-  deleteAll() {
-    return this.http.delete(baseUrl);
-  }
-
   findByName(data) {
     return this.http.post(`${baseUrl}/findContact`, data);
   }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ContactServiceService } from '../../_services/contact-service.service';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/_services/auth.service';
 
 @Component({
   selector: 'app-listcontacts',
@@ -12,7 +13,10 @@ export class ListcontactsComponent implements OnInit {
   contacts: any;
   username: '';
   // dependancy Injection
-  constructor(private contactService: ContactServiceService, private router: Router) { }
+  constructor(private contactService: ContactServiceService, 
+    private router: Router,
+    private authService : AuthService
+    ) { }
 
   ngOnInit(): void {
     this.getAllContacts();
@@ -26,6 +30,11 @@ export class ListcontactsComponent implements OnInit {
       },
       error => {
         console.log(error);
+        console.log(error.statusText)
+        if(error.statusText == "Unauthorized"){
+          this.authService.signOut()
+          this.router.navigate(['/login']);
+        }
       }
     );
   }
@@ -53,6 +62,9 @@ export class ListcontactsComponent implements OnInit {
         },
         error => {
           console.log(error);
+          if(error.statusText == "Unauthorized!"){
+            this.authService.signOut()
+          }
         }
       );
     }
@@ -72,6 +84,10 @@ export class ListcontactsComponent implements OnInit {
       },
       error => {
         console.log(error);
+        if(error.statusText == "Unauthorized!"){
+          this.authService.signOut()
+          this.router.navigate(['/login']);
+        }
       }
     );
   }
