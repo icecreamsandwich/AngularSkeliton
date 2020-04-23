@@ -1,18 +1,24 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-const baseUrl = 'http://localhost:4205/api';
+import { environment } from 'src/environments/environment';
+import { Observable, BehaviorSubject } from 'rxjs';
+
+const baseUrl = environment.apiEndPoint;
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
+  //define a behavioural subject that subscribe to a service
+  userDetailsSubject = new BehaviorSubject<string>("")
+
   constructor(private http: HttpClient) { }
 
   signIn(data) {
     // skip headers adding interceptor for the sigin request
     const headers = new HttpHeaders().set('SkipHeader', 'yes');
-    return this.http.post(baseUrl + '/auth/signin', data, {headers});
+    return this.http.post(baseUrl + '/auth/signin', data, { headers });
   }
 
   public getToken(): string {
@@ -37,6 +43,32 @@ export class AuthService {
     localStorage.removeItem('userName');
     console.log('User logout successfully');
     return true;
+  }
+
+  /**
+   * Create a function that return some values that changes overtime
+   * Caution !! Remove the function after testing
+   */
+
+  public getUserDetails(): Observable<string> {
+    setInterval(() => {
+      const data = {
+        username: "admin",
+        password: "admin"
+      }
+      this.http.post(baseUrl + '/auth/signin', data).subscribe(
+        response => {
+          //console.log(response);
+          var responseJson = JSON.parse(JSON.stringify(response))
+          this.userDetailsSubject.next(responseJson.accessToken)
+        },
+        error => {
+          console.log(error);
+          console.log(error.statusText)
+        })
+    }, 5000);
+
+    return this.userDetailsSubject.asObservable();
   }
 
 }

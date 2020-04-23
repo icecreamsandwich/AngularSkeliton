@@ -10,11 +10,12 @@ import { BehaviorSubject, Observable, Observer } from 'rxjs';
 })
 export class AppComponent implements OnInit {
   title = 'angular-skeleton';
+  authenticatedUserDetails : any
+
   isAuthenticatedObs = new Observable<boolean>((observer: Observer<boolean>) => {
     setInterval(() => observer.next(this.authService.isAuthenticated())
       , 1); // 1 millisecond
   });
-
 
   public isAuthenticated$: BehaviorSubject<boolean>;
   userDetails = {
@@ -22,7 +23,7 @@ export class AppComponent implements OnInit {
     userToken: ''
   };
   constructor(public authService: AuthService, private router: Router) {
-    // this.isAuthenticated$ = new BehaviorSubject(false)
+    this.authenticatedUserDetails = this.authService.getUserDetails()
   }
 
   ngOnInit(): void {

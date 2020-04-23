@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 
 @Directive({
   selector: '[appPhonevalidator]',
-  providers: [{ provide: NG_VALIDATORS, useExisting: forwardRef(() => PhonevalidatorDirective), multi: true }] //useExisting: forwardRef(() => PhonevalidatorDirective)
+  providers: [{ provide: NG_VALIDATORS, useExisting: forwardRef(() => PhonevalidatorDirective), multi: true }]
 })
 export class PhonevalidatorDirective implements Validator {
 

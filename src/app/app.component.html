@@ -18,7 +18,6 @@
       </div>
     </li>
   </ul>
-
   <div *ngIf="isAuthenticatedObs | async" class="footer">
     <span class="footnote">All rights reserved Muneeb Mukhtar @2020</span>
     <!--Async oberervable pipe to show the time asyncronoulsy-->
@@ -27,5 +26,9 @@
 </body>
 
 </html>
+<h4>The following token is coming as a behavioral subscription from a service</h4>
+<label>Token : {{authenticatedUserDetails | async | json}}</label>
+
+
 <app-loader></app-loader>
 <router-outlet></router-outlet>
