@@ -50,6 +50,9 @@ exports.getAllContacts = (req, res) => {
  * @param req contains username
  */
 exports.findContact = (req, res) => {
+    if(!req.body.username){
+        req.body.username = ""
+    }
     Contact.findAll({
         where: {
             [Op.or]: {
