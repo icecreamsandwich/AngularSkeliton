@@ -22,4 +22,10 @@
     <h2>The following data is coming through a obervable</h2>
     {{subjectValue | async | json}}  -->
 
+    <h4>The following token is coming as a behavioral subscription from a service</h4>
+    <label>Token : {{authenticatedUserDetails | async | json}}</label>
+
+    <h2> Click the button to invoke behaviural subject to get latest details</h2>
+    <button (click)="fetchLatestDetails()"> Call behavoural subject</button>
+    {{contactDetailsObs | async | json}}
 </div>

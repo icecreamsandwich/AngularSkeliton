@@ -14,8 +14,13 @@ export class HomeComponent implements OnInit {
   subjectValue: any
   fromChildData : string
   toChildData : string
+  contactDetailsObs : any
+  authenticatedUserDetails : any
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService) { 
+    /* this.contactDetailsObs = this.authService.getContactDetails();
+    this.authenticatedUserDetails = this.authService.getUserDetails() */
+  }
 
   ngOnInit(): void {
     this.getUserTokenDetails()
@@ -48,5 +53,9 @@ export class HomeComponent implements OnInit {
 
   sendDataToChild(){
     this.toChildData = "Hello Child"
+  }
+
+  fetchLatestDetails(){
+    this.contactDetailsObs = this.authService.getContactDetails();
   }
 }

@@ -12,6 +12,7 @@ export class AuthService {
 
   //define a behavioural subject that subscribe to a service
   userDetailsSubject = new BehaviorSubject<string>("")
+  contactDetailsSubject = new BehaviorSubject<string>("")
 
   constructor(private http: HttpClient) { }
 
@@ -47,7 +48,8 @@ export class AuthService {
 
   /**
    * Create a function that return some values that changes overtime
-   * Caution !! Remove the function after testing
+   * Caution !! Remove the functions after testing
+   * Behaviour subject with SetTimeInterval
    */
 
   public getUserDetails(): Observable<string> {
@@ -70,5 +72,24 @@ export class AuthService {
 
     return this.userDetailsSubject.asObservable();
   }
+
+/**
+ * Get contact details as a service to show the data asynchronously
+ * Normal Behaviour subject
+ */
+  public getContactDetails(): Observable<string> {
+    this.http.post(baseUrl + '/getAllContacts', '').subscribe(
+      response => {
+        var responseJson = JSON.parse(JSON.stringify(response))
+        this.contactDetailsSubject.next(responseJson)
+      }, error => {
+        console.log(error);
+        console.log(error.statusText)
+      }
+    )
+
+    return this.contactDetailsSubject.asObservable();
+  }
+
 
 }
