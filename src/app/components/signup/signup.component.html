@@ -8,9 +8,12 @@
 <body>
 
   <h2>Registration</h2>
-  <span *ngIf="message">{{message}}
-    <a [routerLink]="['/login']" routerLinkActive="router-link-active"> <button> Login here</button></a>
-  </span>
+  <div *ngIf="message">
+    <span>{{message}}
+      <a [routerLink]="['/login']" routerLinkActive="router-link-active"> <button> Login here</button></a>
+    </span>
+  </div>
+  
 
   <form *ngIf="!message" #signupForm="ngForm" appIdentityRevealed class="signup_form" name="signup_form"
     (ngSubmit)="signUp()" method="post" #f="ngForm" novalidate>
@@ -38,7 +41,7 @@
         <option value="admin">Administrator</option>
       </select>
       <button type="submit">Register</button>
-      <a [routerLink]="['/login']" routerLinkActive="router-link-active"> <button> Login</button></a>
+      <a [routerLink]="['/login']" routerLinkActive="router-link-active"> <button> Go to Login</button></a>
     </div>
 
   </form>
