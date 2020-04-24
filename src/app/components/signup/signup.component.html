@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+
+  <h2>Registration</h2>
+  <span *ngIf="message">{{message}}
+    <a [routerLink]="['/login']" routerLinkActive="router-link-active"> <button> Login here</button></a>
+  </span>
+
+  <form *ngIf="!message" #signupForm="ngForm" appIdentityRevealed class="signup_form" name="signup_form"
+    (ngSubmit)="signUp()" method="post" #f="ngForm" novalidate>
+    <div class="imgcontainer">
+      <img src="assets/img/img_avatar2.png" alt="Avatar" class="avatar">
+    </div>
+
+    <div class="container">
+      <label for="username"><b>Username</b></label>
+      <input type="text" placeholder="Enter Username" id="username" name="username" required
+        [(ngModel)]="signup.username" #username="ngModel">
+
+      <label for="email"><b>Email</b></label>
+      <input type="text" placeholder="Enter Email" id="email" name="email" required [(ngModel)]="signup.email"
+        #email="ngModel">
+
+      <label for="password"><b>Password</b></label>
+      <input type="password" placeholder="Enter Password" name="password" required [(ngModel)]="signup.password"
+        #password="ngModel">
+      <br />
+      <label for="role"><b>Role</b></label>
+      <select class="select" name="role" required [(ngModel)]="signup.role" #role="ngModel">
+        <option value="user">User</option>
+        <option value="moderator">Moderator</option>
+        <option value="admin">Administrator</option>
+      </select>
+      <button type="submit">Register</button>
+      <a [routerLink]="['/login']" routerLinkActive="router-link-active"> <button> Login</button></a>
+    </div>
+
+  </form>
+
+
+</body>
+
+</html>

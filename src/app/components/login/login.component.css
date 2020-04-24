@@ -29,6 +29,12 @@ button:hover {
   padding: 10px 18px;
   background-color: #f44336;
 }
+.registerbtn {
+  width: auto;
+  padding: 10px 18px;
+  background-color: #f44336;
+  float: right;
+}
 
 .imgcontainer {
   text-align: center;

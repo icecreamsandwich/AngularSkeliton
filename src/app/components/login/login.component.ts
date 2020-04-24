@@ -30,6 +30,7 @@ export class LoginComponent implements OnInit {
           if (result) {
             localStorage.setItem('token', result.accessToken);
             localStorage.setItem('userName', result.username);
+            localStorage.setItem('roles', result.roles);
             console.log('logged in successfully');
             this.router.navigate(['/home']);
           } else {

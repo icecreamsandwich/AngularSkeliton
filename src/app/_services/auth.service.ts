@@ -13,6 +13,7 @@ export class AuthService {
   //define a behavioural subject that subscribe to a service
   userDetailsSubject = new BehaviorSubject<string>("")
   contactDetailsSubject = new BehaviorSubject<string>("")
+  currentUserDetailsOb: any
 
   constructor(private http: HttpClient) { }
 
@@ -20,6 +21,11 @@ export class AuthService {
     // skip headers adding interceptor for the sigin request
     const headers = new HttpHeaders().set('SkipHeader', 'yes');
     return this.http.post(baseUrl + '/auth/signin', data, { headers });
+  }
+
+
+  signUp(data){
+    return this.http.post(baseUrl + '/auth/signup', data);
   }
 
   public getToken(): string {
@@ -46,6 +52,14 @@ export class AuthService {
     return true;
   }
 
+  public currentUserDetails(): object {
+    this.currentUserDetailsOb = {
+      username: localStorage.getItem('userName'),
+      token: localStorage.getItem('token'),
+      roles: localStorage.getItem('roles')
+    }
+    return this.currentUserDetailsOb
+  }
   /**
    * Create a function that return some values that changes overtime
    * Caution !! Remove the functions after testing
@@ -73,10 +87,10 @@ export class AuthService {
     return this.userDetailsSubject.asObservable();
   }
 
-/**
- * Get contact details as a service to show the data asynchronously
- * Normal Behaviour subject
- */
+  /**
+   * Get contact details as a service to show the data asynchronously
+   * Normal Behaviour subject
+   */
   public getContactDetails(): Observable<string> {
     this.http.post(baseUrl + '/getAllContacts', '').subscribe(
       response => {

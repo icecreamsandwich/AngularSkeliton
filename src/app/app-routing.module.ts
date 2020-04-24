@@ -6,11 +6,16 @@ import { ListcontactsComponent } from './components/listcontacts/listcontacts.co
 import { LoginComponent } from './components/login/login.component';
 import { AuthGuard } from './_guards/auth.guard';
 import { ResetpasswordComponent } from './components/resetpassword/resetpassword.component';
+import { SignupComponent } from './components/signup/signup.component';
 
 const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
+  },
+  {
+    path: 'signup',
+    component: SignupComponent,
   },
   {
     path: 'home',

@@ -20,6 +20,7 @@ import { AsyncobervabletimeComponent } from './components/asyncobervabletime/asy
 import { HomechildComponent } from './components/homechild/homechild.component';
 import { PhonevalidatorDirective } from './_directives/phonevalidator.directive';
 import { ResetpasswordComponent } from './components/resetpassword/resetpassword.component';
+import { SignupComponent } from './components/signup/signup.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { ResetpasswordComponent } from './components/resetpassword/resetpassword
     AsyncobervabletimeComponent,
     HomechildComponent,
     PhonevalidatorDirective,
-    ResetpasswordComponent
+    ResetpasswordComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,
