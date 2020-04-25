@@ -38,14 +38,15 @@ const routes: Routes = [
     path: 'resetPassword',
     component: ResetpasswordComponent,
     canActivate: [AuthGuard],
-    data: { roles: ["ROLE_ADMIN"] }
+    data: { roles: ["ROLE_ADMIN", "ROLE_USER"] }
   },
   {
     path: 'viewProfile',
     component: ViewprofileComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
+    data: { roles: ["ROLE_ADMIN", "ROLE_USER"] }
   },
-  { path: '', redirectTo: 'home', pathMatch: 'full' }
+  { path: '', redirectTo: 'login', pathMatch: 'full' }
 ];
 
 @NgModule({

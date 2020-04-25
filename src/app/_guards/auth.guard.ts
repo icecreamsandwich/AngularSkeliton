@@ -19,13 +19,13 @@ export class AuthGuard implements CanActivate {
     if (userRolesAr.includes("ROLE_ADMIN") && getUserToken) {
       return true;
     } else if (userRolesAr.includes("ROLE_USER") && route.data.roles.includes("ROLE_USER") && getUserToken) {
-      this.router.navigate(['/home'])
+      return true;
+    }else if (userRolesAr.includes("ROLE_MODERATOR") && route.data.roles.includes("ROLE_MODERATOR") && getUserToken) {
       return true;
     } else if (userRolesAr.includes("ROLE_USER") && getUserToken){
       this.router.navigate(['/home'])
       return true;
-    }
-    else {
+    }else {
       this.router.navigate(['/login'], { queryParams: { returnUrl: state.url } });
       return false;
     }
