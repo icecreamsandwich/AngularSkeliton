@@ -16,16 +16,18 @@ export class AuthGuard implements CanActivate {
     const getUserToken = this.authService.getToken();
     const userRoles = localStorage.getItem("roles");
     const userRolesAr = userRoles.split(",")
-    if (userRolesAr.includes("ROLE_ADMIN") && getUserToken) {
+    let roleFound: boolean
+    userRolesAr.forEach(role => {
+      if (route.data.roles.includes(role)) {
+        roleFound = true
+      }
+    });
+    if (roleFound && getUserToken) {
       return true;
-    } else if (userRolesAr.includes("ROLE_USER") && route.data.roles.includes("ROLE_USER") && getUserToken) {
-      return true;
-    }else if (userRolesAr.includes("ROLE_MODERATOR") && route.data.roles.includes("ROLE_MODERATOR") && getUserToken) {
-      return true;
-    } else if (userRolesAr.includes("ROLE_USER") && getUserToken){
+    } else if (getUserToken) {
       this.router.navigate(['/home'])
       return true;
-    }else {
+    } else {
       this.router.navigate(['/login'], { queryParams: { returnUrl: state.url } });
       return false;
     }
