@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+
+    <h2>Profile</h2>
+
+    <form #profileForm="ngForm" appIdentityRevealed class="signup_form" name="signup_form"
+        method="post" #f="ngForm" novalidate>
+        <div class="container">
+            <label for="username"><b>Username</b></label>
+            <input type="text"  id="username" name="username" readonly
+            [(ngModel)]="profile.username" #username="ngModel">
+    
+            <br/>
+            <label for="email"><b>Email</b></label>
+            <input type="text"  id="email" name="email" readonly
+            [(ngModel)]="profile.email" #email="ngModel">
+            <br/>
+            <label for="role"><b>Role</b></label>
+            <input type="text"  id="role" name="role" readonly
+            [(ngModel)]="profile.role" #role="ngModel">
+            <br/>
+        </div>
+    </form>
+</body>
+
+</html>

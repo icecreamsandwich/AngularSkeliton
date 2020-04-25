@@ -56,6 +56,6 @@ export class HomeComponent implements OnInit {
   }
 
   fetchLatestDetails(){
-    this.contactDetailsObs = this.authService.getContactDetails();
+    //this.contactDetailsObs = this.authService.getContactDetails();
   }
 }

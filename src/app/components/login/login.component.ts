@@ -32,6 +32,10 @@ export class LoginComponent implements OnInit {
             localStorage.setItem('userName', result.username);
             localStorage.setItem('roles', result.roles);
             console.log('logged in successfully');
+            //sets the user as admin
+            if(result.roles.includes("ROLE_ADMIN")){
+              this.authService.setAdmin(true)
+            }
             this.router.navigate(['/home']);
           } else {
             this.router.navigate(['/']);

@@ -7,6 +7,7 @@ import { LoginComponent } from './components/login/login.component';
 import { AuthGuard } from './_guards/auth.guard';
 import { ResetpasswordComponent } from './components/resetpassword/resetpassword.component';
 import { SignupComponent } from './components/signup/signup.component';
+import { ViewprofileComponent } from './components/viewprofile/viewprofile.component';
 
 const routes: Routes = [
   {
@@ -35,6 +36,11 @@ const routes: Routes = [
   {
     path: 'resetPassword',
     component: ResetpasswordComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'viewProfile',
+    component: ViewprofileComponent,
     canActivate: [AuthGuard]
   },
   { path: '', redirectTo: 'home', pathMatch: 'full' }

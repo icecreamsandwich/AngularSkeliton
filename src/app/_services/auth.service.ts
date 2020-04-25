@@ -14,6 +14,7 @@ export class AuthService {
   userDetailsSubject = new BehaviorSubject<string>("")
   contactDetailsSubject = new BehaviorSubject<string>("")
   currentUserDetailsOb: any
+  isAdminVal: any
 
   constructor(private http: HttpClient) { }
 
@@ -24,7 +25,7 @@ export class AuthService {
   }
 
 
-  signUp(data){
+  signUp(data) {
     return this.http.post(baseUrl + '/auth/signup', data);
   }
 
@@ -36,13 +37,23 @@ export class AuthService {
     return localStorage.getItem('userName');
   }
 
-  public isAuthenticated(): boolean {
+  public isAuthenticated(): object {
     // get the token
     const token = this.getToken();
     // return a boolean reflecting
     // whether or not the token is expired
-    if (token) { return true; }
-    else { return false; }
+    if (token) {
+      return {
+        authenticated: true,
+        isAdmin: this.isAdminVal
+      }
+    }
+    else {
+      return {
+        authenticated: false,
+        isAdmin: this.isAdminVal
+      }
+    }
   }
 
   public signOut(): boolean {
@@ -50,6 +61,19 @@ export class AuthService {
     localStorage.removeItem('userName');
     console.log('User logout successfully');
     return true;
+  }
+
+  public isAdmin(): boolean {
+    return this.isAdminVal
+  }
+
+  public setAdmin(isAdminBool): boolean {
+    if (isAdminBool) {
+      this.isAdminVal = true
+    } else {
+      this.isAdminVal = false
+    }
+    return this.isAdminVal
   }
 
   public currentUserDetails(): object {
@@ -66,7 +90,7 @@ export class AuthService {
    * Behaviour subject with SetTimeInterval
    */
 
-  public getUserDetails(): Observable<string> {
+  /* public getUserDetails(): Observable<string> {
     setInterval(() => {
       const data = {
         username: "admin",
@@ -85,25 +109,25 @@ export class AuthService {
     }, 5000);
 
     return this.userDetailsSubject.asObservable();
-  }
+  } */
 
   /**
    * Get contact details as a service to show the data asynchronously
    * Normal Behaviour subject
    */
-  public getContactDetails(): Observable<string> {
-    this.http.post(baseUrl + '/getAllContacts', '').subscribe(
-      response => {
-        var responseJson = JSON.parse(JSON.stringify(response))
-        this.contactDetailsSubject.next(responseJson)
-      }, error => {
-        console.log(error);
-        console.log(error.statusText)
-      }
-    )
-
-    return this.contactDetailsSubject.asObservable();
-  }
+  /*  public getContactDetails(): Observable<string> {
+     this.http.post(baseUrl + '/getAllContacts', '').subscribe(
+       response => {
+         var responseJson = JSON.parse(JSON.stringify(response))
+         this.contactDetailsSubject.next(responseJson)
+       }, error => {
+         console.log(error);
+         console.log(error.statusText)
+       }
+     )
+ 
+     return this.contactDetailsSubject.asObservable();
+   } */
 
 
 }

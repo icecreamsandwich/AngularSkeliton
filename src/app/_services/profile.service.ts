@@ -12,4 +12,8 @@ export class ProfileService {
   resetPassword(data) {
     return this.http.post(baseUrl + '/auth/resetPassword', data)
   }
+
+  findUser(data) {
+    return this.http.post(baseUrl + '/findUser', data)
+  }
 }
