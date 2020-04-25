@@ -21,22 +21,24 @@ const routes: Routes = [
   {
     path: 'home',
     component: HomeComponent,
-    canActivate: [AuthGuard]
   },
   {
     path: 'addContact',
     component: AddcontactComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
+    data: { roles: ["ROLE_ADMIN"] }
   },
   {
     path: 'listContact',
     component: ListcontactsComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
+    data: { roles: ["ROLE_ADMIN"] }
   },
   {
     path: 'resetPassword',
     component: ResetpasswordComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
+    data: { roles: ["ROLE_ADMIN"] }
   },
   {
     path: 'viewProfile',

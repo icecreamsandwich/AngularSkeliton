@@ -11,18 +11,24 @@ export class AuthGuard implements CanActivate {
 
   }
   canActivate(
-    next: ActivatedRouteSnapshot,
+    route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     const getUserToken = this.authService.getToken();
-    //console.log(this.authService.currentUserDetails())
-    if (getUserToken) {
+    const userRoles = localStorage.getItem("roles");
+    const userRolesAr = userRoles.split(",")
+    if (userRolesAr.includes("ROLE_ADMIN") && getUserToken) {
       return true;
-    } else {
-      // not logged in so redirect to login page with the return url
+    } else if (userRolesAr.includes("ROLE_USER") && route.data.roles.includes("ROLE_USER") && getUserToken) {
+      this.router.navigate(['/home'])
+      return true;
+    } else if (userRolesAr.includes("ROLE_USER") && getUserToken){
+      this.router.navigate(['/home'])
+      return true;
+    }
+    else {
       this.router.navigate(['/login'], { queryParams: { returnUrl: state.url } });
       return false;
     }
-
   }
 
 }
