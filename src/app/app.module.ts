@@ -22,6 +22,7 @@ import { PhonevalidatorDirective } from './_directives/phonevalidator.directive'
 import { ResetpasswordComponent } from './components/resetpassword/resetpassword.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { ViewprofileComponent } from './components/viewprofile/viewprofile.component';
+import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { ViewprofileComponent } from './components/viewprofile/viewprofile.compo
     PhonevalidatorDirective,
     ResetpasswordComponent,
     SignupComponent,
-    ViewprofileComponent
+    ViewprofileComponent,
+    PagenotfoundComponent
   ],
   imports: [
     BrowserModule,

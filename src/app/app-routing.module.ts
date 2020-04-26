@@ -8,6 +8,7 @@ import { AuthGuard } from './_guards/auth.guard';
 import { ResetpasswordComponent } from './components/resetpassword/resetpassword.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { ViewprofileComponent } from './components/viewprofile/viewprofile.component';
+import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.component';
 
 const routes: Routes = [
   {
@@ -46,7 +47,15 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     data: { roles: ["ROLE_ADMIN", "ROLE_USER"] }
   },
-  { path: '', redirectTo: 'login', pathMatch: 'full' }
+  {
+    path: '',
+    redirectTo:'login',
+    pathMatch: 'full'
+  },
+  {
+    path: '**',
+    component: PagenotfoundComponent
+  },
 ];
 
 @NgModule({

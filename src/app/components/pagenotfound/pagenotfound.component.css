@@ -1,0 +1,11 @@
+.pagenotfound{
+    display:  block;
+    width: 800px;
+    height: 200px;
+    text-align: center;
+    background-color: orange;
+    margin:0 auto;
+    font-size: 50px;
+    font-family: 'Courier New', Courier, monospace;
+    padding : 100px 50px 50px 50px;
+}
