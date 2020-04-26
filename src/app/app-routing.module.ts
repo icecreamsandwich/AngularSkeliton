@@ -49,7 +49,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo:'login',
+    redirectTo: 'login',
     pathMatch: 'full'
   },
   {
@@ -59,7 +59,9 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, /* {
+    enableTracing: true
+  } */)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

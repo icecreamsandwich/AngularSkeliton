@@ -66,8 +66,9 @@
 
       <div class="form-group">
         <label for="phone">Phone Number</label>
+        <!-- appPhonevalidator -->
         <input type="text" class="form-control" id="phone" name="phone" required [(ngModel)]="contact.phone"
-          #phone="ngModel" appPhonevalidator pattern="^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[()-\s\./0-9]*$"/>
+          #phone="ngModel" pattern="^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[()-\s\./0-9]*$"/>
         <div *ngIf="phone.invalid && (phone.dirty || phone.touched)" class="alert alert-danger">
           <div *ngIf="phone.errors.required">
             Phone number is required.
@@ -83,8 +84,8 @@
       <button (click)="contactForm.resetForm({})" type="button" class="btn btn-default">Reset</button>
     </div>
   </form>
-  <div *ngIf="submitted">
-    <h4>You submitted successfully!</h4>
+  <div *ngIf="submitted" class="alert-success">
+    <h4>Contact added successfully!</h4>
     <button class="btn btn-success" (click)="newContact()">Add New</button>
   </div>
 </body>

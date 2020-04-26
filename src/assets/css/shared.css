@@ -48,6 +48,12 @@ input[type=text],input[type=email],input[type=password], select{
     background-color: #f2dede;
     border-color: #ebccd1;
   }
+
+  .alert-success {
+    color: black;
+    background-color: palegreen;
+    border-color: rgb(76, 126, 76);
+  }
   
   .alert {
   padding: 15px;
