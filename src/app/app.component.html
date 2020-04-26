@@ -10,7 +10,7 @@
     <li *ngIf="userType == 'ROLE_MODERATOR' || userType == 'ROLE_ADMIN'"><a [routerLink]="['/addContact']">Add User</a></li>
     <li *ngIf="userType == 'ROLE_MODERATOR' || userType == 'ROLE_ADMIN'"><a [routerLink]="['/listContact']">List Users</a></li>
     <li class="dropdown right">
-      <a href="javascript:void(0)" class="dropbtn">Some name</a>
+      <a href="javascript:void(0)" class="dropbtn">{{userName | async}}</a>
       <div class="dropdown-content">
         <a [routerLink]="['/viewProfile']">Profile</a>
         <a [routerLink]="['/resetPassword']">Reset Password</a>

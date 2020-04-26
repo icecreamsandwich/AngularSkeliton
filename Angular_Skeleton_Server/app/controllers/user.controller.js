@@ -61,3 +61,22 @@ exports.findUser = (req, res) => {
     })
   }
 }
+
+/**
+ * Get all user roles
+ */
+exports.getRoles = (req, res) => {
+  Roles.findAll({
+    attributes: ["id", "name"]
+  }).then(roles => {
+    res.status(200).send({
+      message: "Roles retrieved successfully",
+      data: roles
+    })
+  }).catch(error => {
+    res.status(200).send({
+      message: "Roles not retrieved",
+      error: error
+    })
+  })
+}

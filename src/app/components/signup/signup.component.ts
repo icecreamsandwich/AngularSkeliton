@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/_services/auth.service';
 import { Router } from '@angular/router';
+import { ProfileService } from 'src/app/_services/profile.service';
 
 @Component({
   selector: 'app-signup',
@@ -15,9 +16,14 @@ export class SignupComponent implements OnInit {
     role: ''
   }
   message : any
-  constructor(private authservice: AuthService, private router: Router) { }
+  roles : any
+  
+  constructor(private authservice: AuthService,
+    private profileService : ProfileService,
+    private router: Router) { }
 
   ngOnInit(): void {
+    this.getRoles()
   }
 
   signUp() {
@@ -36,6 +42,19 @@ export class SignupComponent implements OnInit {
       this.message = 'User registered successfully'
       this.router.navigate(['/signup']);
     }, error => {
+      console.log(error)
+    })
+  }
+
+  /**
+   * Get User roles to get pre loaded in the select box
+   */
+  getRoles(){
+    this.profileService.getRoles().subscribe(response =>{
+      var jsonResponse = JSON.parse(JSON.stringify(response))
+      this.roles = jsonResponse.data
+      console.log(this.roles)
+    }, error =>{
       console.log(error)
     })
   }

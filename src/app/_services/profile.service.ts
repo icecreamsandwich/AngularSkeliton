@@ -16,4 +16,8 @@ export class ProfileService {
   findUser(data) {
     return this.http.post(baseUrl + '/findUser', data)
   }
+
+  getRoles(){
+    return this.http.post(baseUrl + '/getRoles', "")
+  }
 }

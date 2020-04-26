@@ -35,4 +35,6 @@ module.exports = function(app) {
     [authJwt.verifyToken],
     controller.findUser
   );
+
+  app.post("/api/getRoles",controller.getRoles);
 };
