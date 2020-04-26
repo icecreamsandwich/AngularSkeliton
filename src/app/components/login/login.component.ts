@@ -31,6 +31,8 @@ export class LoginComponent implements OnInit {
             localStorage.setItem('token', result.accessToken);
             localStorage.setItem('userName', result.username);
             localStorage.setItem('roles', result.roles);
+            this.authService.userType.next(result.roles[0])
+            this.authService.isAuthenticatedV.next(true)
             console.log('logged in successfully');
             //sets the user as admin
             if(result.roles.includes("ROLE_ADMIN")){

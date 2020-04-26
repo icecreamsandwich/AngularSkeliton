@@ -13,6 +13,8 @@ export class AuthService {
   //define a behavioural subject that subscribe to a service
   userDetailsSubject = new BehaviorSubject<string>("")
   contactDetailsSubject = new BehaviorSubject<string>("")
+  userType = new BehaviorSubject<string>(this.getUserType())
+  isAuthenticatedV = new BehaviorSubject<boolean>(this.isAuthenticated())
   currentUserDetailsOb: any
   isAdminVal: any
 
@@ -37,7 +39,15 @@ export class AuthService {
     return localStorage.getItem('userName');
   }
 
-  public isAuthenticated(): object {
+  public getUserType(): string {
+    var userRoles = localStorage.getItem('roles');
+    if (userRoles) {
+      var userRolesAr = userRoles.split(",")
+      return userRolesAr[0];
+    } else return "ROLE_USER";
+  }
+
+  /* public isAuthenticated(): object {
     // get the token
     const token = this.getToken();
     // return a boolean reflecting
@@ -55,6 +65,20 @@ export class AuthService {
       }
     }
   }
+ */
+
+  public isAuthenticated(): boolean {
+    // get the token
+    const token = this.getToken();
+    // return a boolean reflecting
+    // whether or not the token is expired
+    if (token) {
+      return true
+    } else {
+      return false
+    }
+  }
+
 
   public signOut(): boolean {
     localStorage.removeItem('token');
@@ -84,6 +108,11 @@ export class AuthService {
     }
     return this.currentUserDetailsOb
   }
+
+  /**
+   * Behaviuoral subject function to get current logged in user type
+   */
+
   /**
    * Create a function that return some values that changes overtime
    * Caution !! Remove the functions after testing

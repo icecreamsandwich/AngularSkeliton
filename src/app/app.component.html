@@ -5,12 +5,12 @@
 </head>
 
 <body>
-  <ul *ngIf="isAuthenticatedObs | async">
+  <ul *ngIf="isAuthenticated">
     <li><a class="active" [routerLink]="['/home']">Home</a></li>
-    <li *ngIf="userName | async"><a [routerLink]="['/addContact']">Add User</a></li>
-    <li *ngIf="userName | async"><a [routerLink]="['/listContact']">List Users</a></li>
+    <li *ngIf="userType == 'ROLE_MODERATOR' || userType == 'ROLE_ADMIN'"><a [routerLink]="['/addContact']">Add User</a></li>
+    <li *ngIf="userType == 'ROLE_MODERATOR' || userType == 'ROLE_ADMIN'"><a [routerLink]="['/listContact']">List Users</a></li>
     <li class="dropdown right">
-      <a href="javascript:void(0)" class="dropbtn">{{userName | async}}</a>
+      <a href="javascript:void(0)" class="dropbtn">Some name</a>
       <div class="dropdown-content">
         <a [routerLink]="['/viewProfile']">Profile</a>
         <a [routerLink]="['/resetPassword']">Reset Password</a>
@@ -18,7 +18,7 @@
       </div>
     </li>
   </ul>
-  <div *ngIf="isAuthenticatedObs | async" class="footer">
+  <div *ngIf="isAuthenticated" class="footer">
     <span class="footnote">All rights reserved Muneeb Mukhtar @2020</span>
     <!--Async oberervable pipe to show the time asyncronoulsy-->
     <app-asyncobervabletime></app-asyncobervabletime>
