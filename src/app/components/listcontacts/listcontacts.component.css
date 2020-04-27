@@ -41,4 +41,5 @@ input[type=text]{
   .deleteSpan{
     cursor: pointer;
     font-weight: bold;
+    font-size: 20px;
   }

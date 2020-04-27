@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ContactServiceService } from '../../_services/contact-service.service';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/_services/auth.service';
+import  swal  from 'sweetalert2';
 
 @Component({
   selector: 'app-listcontacts',
@@ -44,30 +45,42 @@ export class ListcontactsComponent implements OnInit {
   }
 
   deleteContact(e, id) {
-    const deleteConfirm = confirm('Are you sure to delete this user?');
-    if (deleteConfirm && id) {
-      const data = {
-        userId: id
-      };
-      this.contactService.delete(data).subscribe(
-        response => {
-          console.log(response);
-          const responseData = JSON.parse(JSON.stringify(response));
-          if (responseData.message == 'Unauthorized!' || responseData.message == 'No token provided!') {
-            alert('You are unauthorized to perform this operation');
-          } else {
-            alert(responseData.message);  
-            this.ngOnInit();
+    swal.fire({
+    title: 'Are you sure to delete this contact?',
+    showConfirmButton: true,
+    showCancelButton: true}).then(result => {
+      if (result.value && id) {
+        // handle Confirm button click
+        // result.value will contain `true` or the input value
+        const data = {
+          userId: id
+        };
+        this.contactService.delete(data).subscribe(
+          response => {
+            console.log(response);
+            const responseData = JSON.parse(JSON.stringify(response));
+            if (responseData.message == 'Unauthorized!' || responseData.message == 'No token provided!') {
+              swal.fire("Failed", responseData.message, "error"); 
+            } else {
+              swal.fire('Success', responseData.message, "success");
+              this.ngOnInit();
+            }
+          },
+          error => {
+            console.log(error);
+            const errorResponse = JSON.parse(JSON.stringify(error)).error
+            swal.fire("Failed", errorResponse.message, "error"); 
+            if (error.statusText == "Unauthorized!") {
+              this.authService.signOut()
+            }
           }
-        },
-        error => {
-          console.log(error);
-          if (error.statusText == "Unauthorized!") {
-            this.authService.signOut()
-          }
-        }
-      );
-    }
+        );
+        
+      } else {
+        // handle dismissals
+        // result.dismiss can be 'cancel', 'overlay', 'esc' or 'timer'
+      }
+    })
   }
 
   searchContact() {
