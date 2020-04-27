@@ -13,10 +13,10 @@ export class ListcontactsComponent implements OnInit {
   contacts: any;
   username: '';
   // dependancy Injection
-  constructor(private contactService: ContactServiceService, 
+  constructor(private contactService: ContactServiceService,
     private router: Router,
-    private authService : AuthService
-    ) { }
+    private authService: AuthService
+  ) { }
 
   ngOnInit(): void {
     this.getAllContacts();
@@ -31,7 +31,7 @@ export class ListcontactsComponent implements OnInit {
       error => {
         console.log(error);
         console.log(error.statusText)
-        if(error.statusText == "Unauthorized"){
+        if (error.statusText == "Unauthorized") {
           this.authService.signOut()
           this.router.navigate(['/login']);
         }
@@ -56,13 +56,13 @@ export class ListcontactsComponent implements OnInit {
           if (responseData.message == 'Unauthorized!' || responseData.message == 'No token provided!') {
             alert('You are unauthorized to perform this operation');
           } else {
-            alert(responseData.message);
-            this.router.navigate(['/listContact']);
+            alert(responseData.message);  
+            this.ngOnInit();
           }
         },
         error => {
           console.log(error);
-          if(error.statusText == "Unauthorized!"){
+          if (error.statusText == "Unauthorized!") {
             this.authService.signOut()
           }
         }
@@ -84,7 +84,7 @@ export class ListcontactsComponent implements OnInit {
       },
       error => {
         console.log(error);
-        if(error.statusText == "Unauthorized!"){
+        if (error.statusText == "Unauthorized!") {
           this.authService.signOut()
           this.router.navigate(['/login']);
         }
