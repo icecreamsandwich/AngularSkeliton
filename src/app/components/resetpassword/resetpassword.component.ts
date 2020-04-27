@@ -14,6 +14,7 @@ export class ResetpasswordComponent implements OnInit {
     newpassword : '',
   }
   message: string
+  success_message : string
   submitted : boolean = false
   constructor(private profileService: ProfileService) { }
 
@@ -30,7 +31,7 @@ export class ResetpasswordComponent implements OnInit {
       console.log(resonse)
       const result = JSON.parse(JSON.stringify(resonse))
       if(result.status == "success"){
-        this.message = result.message
+        this.success_message = result.message
         this.submitted = true
       }else{
         this.message = result.message
@@ -39,7 +40,8 @@ export class ResetpasswordComponent implements OnInit {
       
     }, error => {
       console.log(error)
-      this.message = JSON.parse(JSON.stringify(error))
+      const errorResponse = JSON.parse(JSON.stringify(error)).error
+      this.message = errorResponse.message
     })
   }
 }

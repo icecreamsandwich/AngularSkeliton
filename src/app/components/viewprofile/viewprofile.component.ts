@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProfileService } from 'src/app/_services/profile.service';
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-viewprofile',
@@ -30,7 +31,7 @@ export class ViewprofileComponent implements OnInit {
     }, error => {
       console.log(error)
       const errorResponse = JSON.parse(JSON.stringify(error)).error
-      alert('Signin failed :' + errorResponse.message)
+      swal.fire("Failed", errorResponse.message, "error");
     })
   }
 

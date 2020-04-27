@@ -31,6 +31,7 @@ input[type=text],input[type=email],input[type=password], select{
     float: left;
     background-color: #83bf21;
     color: #fff;
+    margin: 50px 50px;
   }
   
   input[type=submit]:hover, button:hover {

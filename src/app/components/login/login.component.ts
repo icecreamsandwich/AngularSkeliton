@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../_services/auth.service';
 import { Router } from '@angular/router';
+import swal from 'sweetalert2';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -47,7 +49,7 @@ export class LoginComponent implements OnInit {
         error => {
          // console.log(error);
           const errorResponse = JSON.parse(JSON.stringify(error)).error
-          alert('Signin failed :' +errorResponse.message)
+          swal.fire("Failed", errorResponse.message, "error");
         }
       );
     }
