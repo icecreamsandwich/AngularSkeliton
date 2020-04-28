@@ -8,7 +8,7 @@
 <body>
 
   <h2>Registration</h2>
-  <div *ngIf="message">
+  <div *ngIf="message" class="alert-success">
     <span>{{message}}
       <a [routerLink]="['/login']" routerLinkActive="router-link-active"> <button> Login here</button></a>
     </span>
@@ -25,14 +25,32 @@
       <label for="username"><b>Username</b></label>
       <input type="text" placeholder="Enter Username" id="username" name="username" required
         [(ngModel)]="signup.username" #username="ngModel">
-
+        <div *ngIf="username.invalid && (username.dirty || username.touched)" class="alert alert-danger">
+          <div *ngIf="username.errors.required">
+            Username is required.
+          </div>
+        </div>
+        
       <label for="email"><b>Email</b></label>
-      <input type="text" placeholder="Enter Email" id="email" name="email" required [(ngModel)]="signup.email"
+      <input type="text" placeholder="Enter Email" id="email" name="email" required email [(ngModel)]="signup.email"
         #email="ngModel">
-
+        <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">
+          <div *ngIf="email.errors.required">
+            Email is required.
+          </div>
+          <div *ngIf="email.errors.email">
+            Email must be a valid email address.
+          </div>
+        </div>
+        
       <label for="password"><b>Password</b></label>
       <input type="password" placeholder="Enter Password" name="password" required [(ngModel)]="signup.password"
         #password="ngModel">
+        <div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert alert-danger">
+          <div *ngIf="password.errors.required">
+            Password is required.
+          </div>
+        </div>
       <br />
       <label for="role"><b>Role</b></label>
       <select class="select" name="role" required [(ngModel)]="signup.role" #role="ngModel">

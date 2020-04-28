@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/_services/auth.service';
 import { Router } from '@angular/router';
 import { ProfileService } from 'src/app/_services/profile.service';
+import swal from "sweetalert2";
 
 @Component({
   selector: 'app-signup',
@@ -43,6 +44,8 @@ export class SignupComponent implements OnInit {
       this.router.navigate(['/signup']);
     }, error => {
       console.log(error)
+      var errorResponse = JSON.parse(JSON.stringify(error)).error
+      swal.fire("Failure", errorResponse.message, "error")
     })
   }
 
