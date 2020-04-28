@@ -16,7 +16,7 @@
   
 
   <form *ngIf="!message" #signupForm="ngForm" appIdentityRevealed class="signup_form" name="signup_form"
-    (ngSubmit)="signUp()" method="post" #f="ngForm" novalidate>
+    (ngSubmit)="f.form.valid && signUp()" method="post" #f="ngForm" novalidate>
     <div class="imgcontainer">
       <img src="assets/img/img_avatar2.png" alt="Avatar" class="avatar">
     </div>
@@ -54,11 +54,12 @@
       <br />
       <label for="role"><b>Role</b></label>
       <select class="select" name="role" required [(ngModel)]="signup.role" #role="ngModel">
+        <option selected value="">--Select a Role --</option>
         <option *ngFor="let role of roles">
           {{role.name}}
         </option>
       </select>
-      <button type="submit">Register</button>
+      <button [disabled]="signupForm.invalid" type="submit">Register</button>
       <a [routerLink]="['/login']" routerLinkActive="router-link-active"> <button> Go to Login</button></a>
     </div>
 
