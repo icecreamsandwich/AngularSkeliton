@@ -8,6 +8,9 @@ module.exports = (sequelize, Sequelize) => {
       },
       password: {
         type: Sequelize.STRING
+      },
+      reset_password_hash: {
+        type: Sequelize.TEXT
       }
     });
   
