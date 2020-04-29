@@ -163,7 +163,8 @@ exports.forgotPassword = (req, res) => {
             if (data) {
               return res.status(200).send({
                 status: "success",
-                message: "Forgot Password Mail Sent successfully",
+                message: "Forgot Password Mail Sent. Please check\
+                your mail for further intstructions",
               })
             } else {
               return res.status(200).send({
@@ -191,7 +192,7 @@ exports.sendSESMail = (email, token) => {
     secretAccessKey: "/Wi7Yc62+xlYV/eTZclmG3Uz1M4OLzMf+a4GY2+V",
     region: "us-east-1"
   });
-  const url = `http://localhost:4200/resetPasswordRequest/token=${token}`;
+  const url = `http://localhost:4200/resetPasswordRequest?token=${token}`;
 
   // Create sendEmail params 
   var params = {
@@ -243,3 +244,30 @@ exports.sendSESMail = (email, token) => {
         });
   })
 }
+
+
+/**
+ * Check the token send by the user is correct
+ */
+exports.checkUserToken = (req, res) => {
+  User.findOne({
+    where: {
+      reset_password_token: req.body.token,
+      reset_password_expires: {
+        [Op.gte]: Date.now()
+      }
+    }
+  }).then(user => {
+    if (!user) {
+      return res.status(200).send({
+        status: "failure",
+        message: "Token sent is incorrect!"
+      })
+    } else {
+      return res.status(200).send({
+        status: "success",
+        message: "Token is correct"
+      })
+    }
+  })
+} 

@@ -47,6 +47,11 @@ export class AuthService {
     } else return "ROLE_USER";
   }
 
+  public checkUserToken(data){
+    return this.http.post(baseUrl + '/auth/checkUserToken', data);
+  }
+
+
   /* public isAuthenticated(): object {
     // get the token
     const token = this.getToken();

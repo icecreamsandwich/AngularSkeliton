@@ -43,6 +43,11 @@ const routes: Routes = [
     data: { roles: ["ROLE_ADMIN", "ROLE_USER"] }
   },
   {
+    path: 'resetPasswordRequest',
+    component: ResetpasswordComponent,
+    canActivate: [AuthGuard]
+  },
+  {
     path: 'forgotPassword',
     component: ForgotpasswordComponent
   },
