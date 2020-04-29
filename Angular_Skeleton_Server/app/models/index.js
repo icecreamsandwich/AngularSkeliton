@@ -29,7 +29,7 @@ db.role = require("../models/role.model.js")(sequelize, Sequelize);
 db.contact = require("../models/contact.model.js")(sequelize, Sequelize);
 
 //sync user table for changes
-db.user.sync({alter : true})
+//db.user.sync({alter : true})
 
 db.role.belongsToMany(db.user, {
   through: "user_roles",

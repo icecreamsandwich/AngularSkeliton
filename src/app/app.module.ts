@@ -23,6 +23,7 @@ import { ResetpasswordComponent } from './components/resetpassword/resetpassword
 import { SignupComponent } from './components/signup/signup.component';
 import { ViewprofileComponent } from './components/viewprofile/viewprofile.component';
 import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.component';
+import { ForgotpasswordComponent } from './components/forgotpassword/forgotpassword.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.co
     ResetpasswordComponent,
     SignupComponent,
     ViewprofileComponent,
-    PagenotfoundComponent
+    PagenotfoundComponent,
+    ForgotpasswordComponent
   ],
   imports: [
     BrowserModule,

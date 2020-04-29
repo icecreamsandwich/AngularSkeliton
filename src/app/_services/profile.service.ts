@@ -20,4 +20,8 @@ export class ProfileService {
   getRoles(){
     return this.http.post(baseUrl + '/getRoles', "")
   }
+  
+  forgotPassword(data){
+    return this.http.post(baseUrl + '/auth/forgotPassword', data)
+  }
 }
