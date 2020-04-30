@@ -51,6 +51,10 @@ export class AuthService {
     return this.http.post(baseUrl + '/auth/checkUserToken', data);
   }
 
+  public resetPasswordRequest(data){
+    return this.http.post(baseUrl + '/auth/resetPasswordRequest', data)
+  }
+
 
   /* public isAuthenticated(): object {
     // get the token

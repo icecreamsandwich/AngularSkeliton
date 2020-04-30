@@ -270,4 +270,35 @@ exports.checkUserToken = (req, res) => {
       })
     }
   })
-} 
+}
+
+/**
+ * Reset password using token
+ */
+exports.resetPasswordRequest = (req, res) => {
+  User.findOne({
+    where: {
+      reset_password_token: req.body.token,
+      reset_password_expires: {
+        [Op.gte]: Date.now()
+      }
+    }
+  }).then(user => {
+    if (!user) {
+      return res.status(200).send({
+        status: "failure",
+        message: "Token sent is incorrect!"
+      })
+    } else {
+      user.update({
+        password: bcrypt.hashSync(req.body.password, 8)
+      }).then(user => {
+        console.log(user)
+        return res.status(200).send({
+          status: "success",
+          message: "Password Updated Successfully"
+        })
+      })
+    }
+  })
+}
