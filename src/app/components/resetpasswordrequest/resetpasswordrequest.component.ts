@@ -21,7 +21,6 @@ export class ResetpasswordrequestComponent implements OnInit {
     private activatedRoute: ActivatedRoute
   ) {
     this.activatedRoute.queryParams.subscribe(params => {
-      console.log(params['token']);
       this.token = params['token']
     })
     this.verifyToken()
@@ -34,23 +33,25 @@ export class ResetpasswordrequestComponent implements OnInit {
     //check the route first, if the route is resetPassword Request
     // then verify the token
     this.tokenVerified = 'wait';
-    const data = {
-      token: this.token
-    }
-    this.authService.checkUserToken(data).subscribe(
-      response => {
-        const result = JSON.parse(JSON.stringify(response))
-        console.log(result)
-        if (result.status == "success") {
-          this.tokenVerified = true;
-        } else {
-          this.tokenVerified = false;
-        };
-      }, error => {
-        const errorResponse = JSON.parse(JSON.stringify(error)).error
-        console.log(errorResponse.message)
-        this.tokenVerified = false;
-      })
+      if (this.token) {
+        const data = {
+          token: this.token
+        }
+        this.authService.checkUserToken(data).subscribe(
+          response => {
+            const result = JSON.parse(JSON.stringify(response))
+            console.log(result)
+            if (result.status == "success") {
+              this.tokenVerified = true;
+            } else {
+              this.tokenVerified = false;
+            };
+          }, error => {
+            const errorResponse = JSON.parse(JSON.stringify(error)).error
+            console.log(errorResponse.message)
+            this.tokenVerified = false;
+          })
+      }
   }
 
   resetPassword() {
