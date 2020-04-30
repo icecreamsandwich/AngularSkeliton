@@ -291,7 +291,9 @@ exports.resetPasswordRequest = (req, res) => {
       })
     } else {
       user.update({
-        password: bcrypt.hashSync(req.body.password, 8)
+        password: bcrypt.hashSync(req.body.password, 8), 
+        reset_password_token: "",
+        reset_password_expires : ""
       }).then(user => {
         console.log(user)
         return res.status(200).send({
