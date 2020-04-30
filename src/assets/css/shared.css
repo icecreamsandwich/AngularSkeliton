@@ -77,3 +77,9 @@ input[type=text],input[type=email],input[type=password], select{
   h2{
     text-align: center;
   }
+
+  .signup_avatar {
+    height: 200px;
+    width: 200px;
+    margin-left: 280px;
+}
