@@ -25,7 +25,6 @@ export class ViewprofileComponent implements OnInit {
     }
     this.profileService.findUser(data).subscribe(response => {
       const jsonResponse = JSON.parse(JSON.stringify(response))
-      console.log(jsonResponse)
       this.profile = jsonResponse.data
       this.profile.role = jsonResponse.data.roles[0].name
     }, error => {

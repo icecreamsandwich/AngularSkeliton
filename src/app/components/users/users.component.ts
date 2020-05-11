@@ -20,7 +20,7 @@ export class UsersComponent implements OnInit {
   getAllUsers() {
     this.profileService.getAllUsers().subscribe(
       response => {
-        console.log(response);
+      //  console.log(response);
         this.users = JSON.parse(JSON.stringify(response)).data
       }, error => {
         console.log(error)

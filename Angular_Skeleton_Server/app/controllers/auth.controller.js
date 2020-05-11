@@ -51,8 +51,6 @@ exports.signin = (req, res) => {
     .then(user => {
       if (!user) {
         return res.status(404).send({ message: "User Not found." });
-      } else if (user.user_status == 0) {
-        return res.status(404).send({ message: "User is blocked!" });
       }
 
       var passwordIsValid = bcrypt.compareSync(
@@ -65,6 +63,8 @@ exports.signin = (req, res) => {
           accessToken: null,
           message: "Invalid Password!"
         });
+      } else if (user.user_status == 0) {
+        return res.status(404).send({ message: "User is blocked!" });
       }
 
       var token = jwt.sign({ id: user.id }, config.secret, {

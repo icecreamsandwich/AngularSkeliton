@@ -20,38 +20,42 @@ export class LoginComponent implements OnInit {
   }
 
   loginContact() {
-
-    const data = {
-      username: this.login.username,
-      password: this.login.password
-    };
-    if (data) {
-      this.authService.signIn(data).subscribe(
-        res => {
-          const result = JSON.parse(JSON.stringify(res));
-          if (result) {
-            localStorage.setItem('token', result.accessToken);
-            localStorage.setItem('userName', result.username);
-            localStorage.setItem('roles', result.roles);
-            this.authService.userType.next(result.roles[0])
-            this.authService.isAuthenticatedV.next(true)
-            console.log('logged in successfully');
-            //sets the user as admin
-            if(result.roles.includes("ROLE_ADMIN")){
-              this.authService.setAdmin(true)
+    if (!this.login.username || !this.login.password) {
+      swal.fire("Failed", "Please enter Username and Password", "error");
+    } else {
+      const data = {
+        username: this.login.username,
+        password: this.login.password
+      };
+      if (data) {
+        this.authService.signIn(data).subscribe(
+          res => {
+            const result = JSON.parse(JSON.stringify(res));
+            if (result) {
+              localStorage.setItem('token', result.accessToken);
+              localStorage.setItem('userName', result.username);
+              localStorage.setItem('roles', result.roles);
+              this.authService.userType.next(result.roles[0])
+              this.authService.isAuthenticatedV.next(true)
+              console.log('logged in successfully');
+              //sets the user as admin
+              if (result.roles.includes("ROLE_ADMIN")) {
+                this.authService.setAdmin(true)
+              }
+              this.router.navigate(['/home']);
+            } else {
+              this.router.navigate(['/']);
             }
-            this.router.navigate(['/home']);
-          } else {
-            this.router.navigate(['/']);
-          }
 
-        },
-        error => {
-         // console.log(error);
-          const errorResponse = JSON.parse(JSON.stringify(error)).error
-          swal.fire("Failed", errorResponse.message, "error");
-        }
-      );
+          },
+          error => {
+            // console.log(error);
+            const errorResponse = JSON.parse(JSON.stringify(error)).error
+            swal.fire("Failed", errorResponse.message, "error");
+          }
+        );
+      }
     }
+
   }
 }

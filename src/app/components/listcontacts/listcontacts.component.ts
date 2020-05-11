@@ -35,6 +35,7 @@ export class ListcontactsComponent implements OnInit {
         if (error.statusText == "Unauthorized") {
           this.authService.signOut()
           this.router.navigate(['/login']);
+          location.reload()
         }
       }
     );
