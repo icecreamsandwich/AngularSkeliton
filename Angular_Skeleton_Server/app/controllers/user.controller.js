@@ -80,3 +80,20 @@ exports.getRoles = (req, res) => {
     })
   })
 }
+
+/**
+ * Get ALL users to manage for super admin
+ */
+exports.getAllUsers = (req, res) => {
+  User.findAll({}).then(users => {
+    res.status(200).send({
+      message: "Users retrieved successfully",
+      data: users
+    })
+  }).catch(error => {
+    res.status(200).send({
+      message: "Users not retrieved",
+      error: error
+    })
+  })
+}

@@ -11,6 +11,7 @@ import { ViewprofileComponent } from './components/viewprofile/viewprofile.compo
 import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.component';
 import { ForgotpasswordComponent } from './components/forgotpassword/forgotpassword.component';
 import { ResetpasswordrequestComponent } from './components/resetpasswordrequest/resetpasswordrequest.component';
+import { UsersComponent } from './components/users/users.component';
 
 const routes: Routes = [
   {
@@ -34,6 +35,12 @@ const routes: Routes = [
   {
     path: 'listContact',
     component: ListcontactsComponent,
+    canActivate: [AuthGuard],
+    data: { roles: ["ROLE_ADMIN"] }
+  },
+  {
+    path: 'listUsers',
+    component: UsersComponent,
     canActivate: [AuthGuard],
     data: { roles: ["ROLE_ADMIN"] }
   },

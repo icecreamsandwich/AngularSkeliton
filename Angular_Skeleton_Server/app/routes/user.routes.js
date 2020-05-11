@@ -37,4 +37,5 @@ module.exports = function(app) {
   );
 
   app.post("/api/getRoles",controller.getRoles);
+  app.post("/api/getAllUsers", [authJwt.verifyToken],controller.getAllUsers);
 };

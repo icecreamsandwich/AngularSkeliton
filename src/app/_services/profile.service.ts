@@ -24,4 +24,12 @@ export class ProfileService {
   forgotPassword(data){
     return this.http.post(baseUrl + '/auth/forgotPassword', data)
   }
+
+  getAllUsers(){
+    return this.http.post(baseUrl + '/getAllUsers', '')
+  }
+  
+  changeUserStatus(data){
+    return this.http.post(baseUrl + '/auth/changeUserStatus', data)
+  }
 }

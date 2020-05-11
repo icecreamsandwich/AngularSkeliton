@@ -1,0 +1,29 @@
+<div class="list row">
+    <div *ngIf="users; else display_none" class="col-md-6">
+        <table id="customers">
+          <tr>
+            <th>User Name</th>
+            <th>Email</th>
+            <th>Disable/ Enable</th>
+          </tr>
+    
+          <tr *ngFor="let user of users; let i = index">
+            <td>
+              {{user.username}}
+            </td>
+            <td>
+              {{user.email}}
+            </td>
+            <td>
+              <button (click)="changeUserStatus($event, user.id, 0)" type="button" class="disableBtn" *ngIf="user.user_status == 1">Disable</button>
+              <button (click)="changeUserStatus($event, user.id, 1)" type="button" class="enableBtn" *ngIf="!user.user_status || user.user_status == 0">Enable</button>
+            </td>
+          </tr>
+        </table>
+    </div>
+    <ng-template #display_none>
+      <span>No users found</span>
+    </ng-template>
+    <div class="col-md-6">
+    </div>
+  </div>

@@ -14,6 +14,9 @@ module.exports = (sequelize, Sequelize) => {
       },
       reset_password_expires: {
         type: Sequelize.TEXT
+      },
+      user_status: {
+        type: Sequelize.STRING
       }
     });
   

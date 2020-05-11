@@ -24,6 +24,10 @@ export class AppComponent implements OnInit {
       setInterval(() => {
         observer.next(this.authService.getUserName());
       }, 1);
+
+      this.authService.isAuthenticatedV.subscribe(res =>{
+        this.isAuthenticated = res;
+      })
     })
 
 

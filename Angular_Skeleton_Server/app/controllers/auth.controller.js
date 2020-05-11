@@ -14,7 +14,8 @@ exports.signup = (req, res) => {
   User.create({
     username: req.body.username,
     email: req.body.email,
-    password: bcrypt.hashSync(req.body.password, 8)
+    password: bcrypt.hashSync(req.body.password, 8),
+    user_status: 1
   })
     .then(user => {
       if (req.body.roles) {
@@ -44,12 +45,15 @@ exports.signup = (req, res) => {
 exports.signin = (req, res) => {
   User.findOne({
     where: {
-      username: req.body.username
+      username: req.body.username,
+      user_status: 1
     }
   })
     .then(user => {
       if (!user) {
         return res.status(404).send({ message: "User Not found." });
+      } else if (user.user_status == 0) {
+        return res.status(404).send({ message: "User is blocked!" });
       }
 
       var passwordIsValid = bcrypt.compareSync(
@@ -291,14 +295,41 @@ exports.resetPasswordRequest = (req, res) => {
       })
     } else {
       user.update({
-        password: bcrypt.hashSync(req.body.password, 8), 
+        password: bcrypt.hashSync(req.body.password, 8),
         reset_password_token: "",
-        reset_password_expires : ""
+        reset_password_expires: ""
       }).then(user => {
         console.log(user)
         return res.status(200).send({
           status: "success",
           message: "Password Updated Successfully"
+        })
+      })
+    }
+  })
+}
+
+/**
+ * Change the status of the user(super admin)
+ */
+exports.changeUserStaus = (req, res) => {
+  User.findOne({
+    where: {
+      id: req.body.userId
+    }
+  }).then(user => {
+    if (!user) {
+      return res.status(200).send({
+        status: "failure",
+        message: "User not found!"
+      })
+    } else {
+      user.update({
+        user_status: req.body.status
+      }).then(user => {
+        return res.status(200).send({
+          status: "success",
+          message: "User status changed Successfully"
         })
       })
     }
