@@ -45,8 +45,7 @@ exports.signup = (req, res) => {
 exports.signin = (req, res) => {
   User.findOne({
     where: {
-      username: req.body.username,
-      user_status: 1
+      username: req.body.username
     }
   })
     .then(user => {
