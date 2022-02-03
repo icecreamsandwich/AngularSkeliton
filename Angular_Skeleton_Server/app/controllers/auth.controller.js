@@ -1,4 +1,5 @@
 const db = require("../models");
+require('dotenv').config();
 const config = require("../config/auth.config");
 const User = db.user;
 const Role = db.role;
