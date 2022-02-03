@@ -67,7 +67,11 @@ span.psw {
 }
 
 .login_form{
-  width: 100%;
+  width: 50%;
   text-align: center;
   display: block;
+  margin: auto;
+}
+h2{
+  text-align: center;
 }

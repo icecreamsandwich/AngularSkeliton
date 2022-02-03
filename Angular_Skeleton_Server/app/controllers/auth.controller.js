@@ -189,10 +189,10 @@ exports.sendSESMail = (email, token) => {
   var AWS = require('aws-sdk');
   // Set the region 
   //AWS.config.update({region: 'us-east-1'});
-
+console.log(process.env.accessKey)
   AWS.config.update({
-    accessKeyId: "AKIAIMPM63GNWBF4MV3A",
-    secretAccessKey: "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",
+    accessKeyId: process.env.accessKey,
+    secretAccessKey: process.env.secret,
     region: "us-east-1"
   });
   const url = `http://localhost:4200/resetPasswordRequest?token=${token}`;

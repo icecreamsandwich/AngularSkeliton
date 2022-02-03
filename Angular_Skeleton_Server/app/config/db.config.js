@@ -1,7 +1,7 @@
 module.exports = {
   HOST: "localhost",
   USER: "root",
-  PASSWORD: "mZS*uKqRDCeJxO9",
+  PASSWORD: "P@55w0rd",
   DB: "angular_skeleton",
   dialect: "mysql",
   pool: {

@@ -18,9 +18,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // database
 const db = require("./app/models");
-//const Role = db.role;
-//db.sequelize.sync();
-// force: true will drop the table if it already exists
+const Role = db.role;
+// db.sequelize.sync();
+// //force: true will drop the table if it already exists
 // db.sequelize.sync({force: true}).then(() => {
 //   console.log('Drop and Resync Database with { force: true }');
 //   initial();
@@ -41,3 +41,18 @@ const PORT = process.env.PORT || 4205;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
 });
+
+//comment it after first run
+function initial(){
+  Role.sync().then(() => {
+    Role.create({
+      name: 'user',
+    });
+    Role.create({
+      name: 'admin',
+    });
+    Role.create({
+      name: 'moderator',
+    });
+  });
+}
