@@ -1,6 +1,6 @@
 # AngularSkeleton
 
-This app has been deployed to Heroku and available at the URL: https://angular-employee-payroll.herokuapp.com/
+This app frontend has been deployed to AWS s3 and available at the URL: http://angularbuckep.s3-website-us-east-1.amazonaws.com
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.1.
 
